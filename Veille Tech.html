@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bryan R. - Veille Technologique</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Fira+Mono&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
+</head>
+<body>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #2f3a00;
+            color: rgb(239, 239, 230);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .main-nav {
+            background: #000;
+            padding: 20px 40px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            border-bottom: 1px solid #444;
+        }
+
+        .main-nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .main-nav a {
+            color: rgb(239, 239, 230);
+            text-decoration: none;
+            font-family: 'Fira Mono', monospace;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: rgb(239, 239, 230);
+        }
+
+        .section {
+            min-height: 100vh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 60px 40px;
+            box-sizing: border-box;
+        }
+
+        .veille-intro {
+            max-width: 800px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .veille-grid {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 20px;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            justify-content: center;
+        }
+
+        .veille-item {
+            flex: 1 1 300px;
+            max-width: 300px;
+            background: #ffffff;
+            padding: 1rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(71, 71, 71, 0.5);
+            text-align: center;
+            opacity: 1;
+            transform: translateY(0);
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .veille-item h3 {
+            margin-bottom: 0.5rem;
+            color: #000;
+        }
+
+        .veille-text {
+            background: #222;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: left;
+            color: rgb(239, 239, 230);
+        }
+
+        .veille-item .btn {
+            margin-top: auto;
+            padding: 15px 30px;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            border: 2px solid #000;
+            background-color: #ffd700;
+            color: #000;
+            transition: opacity 0.3s;
+        }
+
+        .veille-item .btn:hover {
+            opacity: 0.9;
+        }
+
+        footer {
+            background: #000;
+            padding: 30px 40px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            font-size: 14px;
+            color: #ccc;
+            border-top: 1px solid #444;
+        }
+
+        footer div {
+            margin: 10px 0;
+        }
+
+        h1, h2 {
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+
+        h1 { font-size: 3rem; }
+        h2 { font-size: 2.5rem; }
+
+        @media (max-width: 768px) {
+            .main-nav {
+                position: fixed;
+                top: 0;
+            }
+            .main-nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background: #000;
+                padding: 20px;
+            }
+            .main-nav ul.active {
+                display: flex;
+            }
+            .hamburger {
+                display: block;
+            }
+            .veille-grid {
+                flex-direction: column;
+                gap: 40px;
+                max-width: 100%;
+                padding: 0 20px;
+            }
+            .veille-item {
+                max-width: 100%;
+            }
+        }
+    </style>
+
+   <nav class="main-nav">
+        <div class="hamburger">☰</div>
+        <ul>
+            <li><a href="index.html">[Accueil]</a></li>
+            <li><a href="Profil.html">[Profile]</a></li>
+            <li><a href="Projets.html">[Projets]</a></li>
+            <li><a href="Veille Tech.html">[veille tech]</a></li>
+            <li><a href="Contact.html">[Contact]</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="veille" class="section">
+            <h2>Veille Technologique</h2>
+            <div class="veille-intro">
+                <p>En tant qu'étudiant en informatique, je m'engage à rester à la pointe des innovations technologiques. Cette section présente ma veille technologique, où j'explore les tendances émergentes et les avancées qui façonnent l'avenir du développement web et de l'informatique.</p>
+                <p><strong>Thème principal :</strong> L'impact des technologies émergentes sur le développement web et la transformation numérique.</p>
+            </div>
+            <div class="veille-grid">
+                <div class="veille-item">
+                    <h3>IA Générative</h3>
+                    <div class="veille-text">
+                        <p>L'intelligence artificielle générative, comme les modèles de langage et de création d'images, révolutionne la création de contenu et l'automatisation.</p>
+                    </div>
+                    <a href="https://www.example.com/ia-generative" class="btn">En savoir plus</a>
+                </div>
+                <div class="veille-item">
+                    <h3>Web3 et Blockchain</h3>
+                    <div class="veille-text">
+                        <p>Le Web3 utilise la blockchain pour des applications décentralisées, offrant plus de transparence et de sécurité dans les transactions numériques.</p>
+                    </div>
+                    <a href="https://www.example.com/web3-blockchain" class="btn">En savoir plus</a>
+                </div>
+                <div class="veille-item">
+                    <h3>Frameworks JavaScript</h3>
+                    <div class="veille-text">
+                        <p>Les frameworks comme React, Vue.js et Svelte continuent d'évoluer, simplifiant le développement d'interfaces utilisateur dynamiques.</p>
+                    </div>
+                    <a href="https://www.example.com/js-frameworks" class="btn">En savoir plus</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div>
+            <strong>Téléphone</strong><br>+230 58 18 75 61
+        </div>
+        <div>
+            <strong>E-mail</strong><br>bryanrambelo@gmail.com
+        </div>
+        <div>
+            <strong>Suivez-moi</strong><br>LinkedIn | Rambelo Bryan
+        </div>
+        <div>
+            &copy; 2025 Bryan R. / Student MCCI Business School
+        </div>
+    </footer>
+
+    <script>
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        gsap.registerPlugin(ScrollTrigger);
+
+        gsap.utils.toArray('.section').forEach(section => {
+            gsap.from(section, {
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                scrollTrigger: {
+                    trigger: section,
+                    start: 'top 80%',
+                    toggleActions: 'play none none reverse'
+                }
+            });
+        });
+
+        gsap.utils.toArray('.veille-item').forEach(item => {
+            gsap.from(item, {
+                opacity: 0,
+                y: 20,
+                duration: 0.5,
+                scrollTrigger: {
+                    trigger: item,
+                    start: 'top 80%',
+                    toggleActions: 'play none none reverse'
+                }
+            });
+        });
+
+        const hamburger = document.querySelector('.hamburger');
+        const navUl = document.querySelector('.main-nav ul');
+
+        hamburger.addEventListener('click', () => {
+            navUl.classList.toggle('active');
+        });
+
+        const veilleItems = document.querySelectorAll('.veille-item');
+        veilleItems.forEach(item => {
+            item.addEventListener('dblclick', () => {
+                const link = item.querySelector('a');
+                if (link) {
+                    window.location.href = link.href;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
