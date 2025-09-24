@@ -19,7 +19,7 @@
 
     header {
       background: #000;
-      padding: 20px 40px;
+      padding: 20px 20px; /* Réduit pour petits écrans */
       position: fixed;
       top: 0;
       width: 100%;
@@ -28,12 +28,15 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      box-sizing: border-box;
     }
 
     .main-nav {
       display: flex;
       justify-content: center;
       align-items: center;
+      width: 100%;
+      position: relative;
     }
 
     .main-nav ul {
@@ -48,7 +51,7 @@
       color: rgb(239, 239, 230);
       text-decoration: none;
       font-family: 'Fira Mono', monospace;
-      font-weight: 900; /* Bolder text */
+      font-weight: 900;
       text-transform: uppercase;
       font-size: 16px;
     }
@@ -66,21 +69,21 @@
 
     main {
       flex: 1;
-      padding: 80px 40px 60px;
+      padding: 80px 20px 40px; /* Ajusté pour petits écrans */
     }
 
     h2 {
       text-align: center;
-      font-size: 28px;
-      margin-bottom: 30px;
+      font-size: 1.8rem; /* Réduit pour meilleure adaptation */
+      margin-bottom: 20px;
     }
 
     .projects-container {
       display: flex;
       flex-direction: column;
-      gap: 40px;
+      gap: 30px;
       align-items: center;
-      max-width: 600px;
+      max-width: 90%; /* Plus flexible */
       margin: 0 auto;
     }
 
@@ -89,8 +92,6 @@
       border-radius: 12px;
       padding: 20px;
       width: 100%;
-      max-width: 600px;
-      min-height: 400px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.3);
       display: flex;
       flex-direction: column;
@@ -99,8 +100,8 @@
     }
 
     .project-card img {
-      width: 100%;
-      height: 200px;
+      width: 75%;
+      max-height: 400px; /* Max-height au lieu de height fixe */
       object-fit: cover;
       border-radius: 8px;
       margin-bottom: 15px;
@@ -108,13 +109,13 @@
 
     .project-card h3 {
       margin: 10px 0;
-      font-size: 18px;
+      font-size: 1.2rem;
     }
 
     .project-card p {
-      font-size: 14px;
+      font-size: 0.9rem;
       color: #ccc;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
       text-align: center;
       flex-grow: 1;
     }
@@ -137,7 +138,8 @@
       font-weight: 600;
       transition: background-color 0.3s ease;
       text-align: center;
-      min-width: 100px;
+      flex: 1; /* Les boutons partagent l'espace équitablement */
+      min-width: 80px; /* Réduit pour petits écrans */
     }
 
     .project-card a:hover {
@@ -146,11 +148,11 @@
 
     footer {
       background: #000;
-      padding: 30px 40px;
+      padding: 20px; /* Réduit pour petits écrans */
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
-      font-size: 14px;
+      font-size: 0.9rem;
       color: #ccc;
       border-top: 1px solid #444;
     }
@@ -169,6 +171,7 @@
         width: 100%;
         background: #000;
         padding: 20px;
+        box-sizing: border-box;
       }
       .main-nav ul.active {
         display: flex;
@@ -180,23 +183,56 @@
         top: 20px;
       }
       .projects-container {
-        padding: 0 20px;
+        max-width: 100%;
+        padding: 0 10px;
       }
       .project-card {
-        max-width: 100%;
+        padding: 10px;
+      }
+      .project-card img {
+        max-height: 150px; /* Réduit pour petits écrans */
       }
       .project-buttons {
         flex-direction: column;
         align-items: center;
+        gap: 8px;
       }
       .project-card a {
-        width: 80%;
+        width: 100%; /* Boutons pleine largeur */
+        max-width: 200px; /* Limite la largeur max */
       }
       footer {
         flex-direction: column;
         align-items: center;
         text-align: center;
-        gap: 10px;
+        padding: 15px;
+        gap: 8px;
+      }
+      h2 {
+        font-size: 1.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      header {
+        padding: 15px;
+      }
+      .main-nav ul {
+        top: 50px;
+        padding: 15px;
+      }
+      .hamburger {
+        top: 15px;
+        right: 15px;
+      }
+      main {
+        padding: 60px 10px 20px;
+      }
+      .project-card h3 {
+        font-size: 1rem;
+      }
+      .project-card p {
+        font-size: 0.8rem;
       }
     }
 
@@ -246,7 +282,7 @@
     <div class="projects-container">
       <div class="project-card">
         <img src="image/Capture d'écran 2025-05-07 093554.png" alt="Supercar Client">
-        <h3>Site de vente de Voitures</h3>
+        <h3>SUPERCAR</h3>
         <p>Réservation de voitures de luxe avec une interface utilisateur moderne et intuitive, offrant une expérience fluide pour les clients.</p>
         <div class="project-buttons">
           <a href="#" target="_blank">Rapport</a>
@@ -256,17 +292,17 @@
         </div>
       </div>
       <div class="project-card">
-        <h3>Intermart Achat</h3>
-        <p>Application web pour la gestion des achats en ligne, avec un tableau de bord administratif et une interface utilisateur intuitive.</p>
+        <h3> VOUCHER</h3>
+        <p>Bon d'achat de chez Intermart a n'importe quel prix de votre choix .</p>
         <div class="project-buttons">
           <a href="#" target="_blank">Rapport</a>
           <a href="#" target="_blank">Présentation</a>
           <a href="#" target="_blank">Attestation</a>
-          <a href="../Supercar/Admin Supercar/Acceuil.html" target="_blank">Voir le site</a>
+          <a href="" target="_blank">Voir le site</a>
         </div>
       </div>
       <div class="project-card">
-        <h3>Stage 1</h3>
+        <h3>Stage 1: FACTURATION </h3>
         <p>Projet réalisé lors de mon premier stage, axé sur le développement d'une solution web pour une entreprise locale.</p>
         <div class="project-buttons">
           <a href="#" target="_blank">Rapport</a>
