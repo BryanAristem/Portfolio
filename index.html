@@ -3,117 +3,141 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bryan Rambelo | Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Fira+Mono&display=swap" rel="stylesheet">
-  <!-- Preload critical images -->
+  <title>Bryan Rambelo | Portfolio Développeur</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Fira+Mono:wght@400;700&display=swap" rel="stylesheet">
   <link rel="preload" href="image/fond.jpeg" as="image">
   <link rel="preload" href="image/screenshot-2025-05-07.png" as="image">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
   <style>
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-    body{font-family:'Inter',sans-serif;background:#17251d;color:#e0e0e0;overflow-x:hidden;line-height:1.7}
-    .nav{background:#000;padding:1.2rem 2rem;position:fixed;top:0;width:100%;z-index:1000;display:flex;justify-content:center;border-bottom:1px solid #444}
-    .nav ul{list-style:none;display:flex;gap:1.5rem}
-    .nav a{color:#e0e0e0;text-decoration:none;font-family:'Fira Mono',monospace;font-weight:700;text-transform:uppercase;font-size:.85rem;transition:color .3s}
+    body{font-family:'Inter',sans-serif;background:#0a0f0d;color:#e0e0e0;overflow-x:hidden;line-height:1.7}
+    
+    /* Navigation */
+    .nav{background:rgba(0,0,0,.95);backdrop-filter:blur(10px);padding:1.2rem 2rem;position:fixed;top:0;width:100%;z-index:1000;display:flex;justify-content:center;border-bottom:1px solid rgba(1,255,192,.2);box-shadow:0 4px 20px rgba(0,0,0,.3)}
+    .nav ul{list-style:none;display:flex;gap:2rem;align-items:center}
+    .nav a{color:#e0e0e0;text-decoration:none;font-family:'Fira Mono',monospace;font-weight:700;text-transform:uppercase;font-size:.85rem;transition:all .3s;position:relative;padding:.5rem 0}
+    .nav a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:#01ffc0;transition:width .3s}
     .nav a:hover{color:#01ffc0}
+    .nav a:hover::after{width:100%}
     .hamburger{display:none;cursor:pointer;font-size:1.6rem;color:#e0e0e0}
-    .hero{min-height:100vh;display:flex;align-items:center;justify-content:space-between;padding:5rem 2rem;max-width:1200px;margin:0 auto;gap:2rem}
-    .hero h1{font-size:5rem;font-weight:900;color:#fff;line-height:.9;letter-spacing:-4px;margin-bottom:.5rem}
-    .badge{font-family:'Fira Mono',monospace;color:#aaa;font-size:.9rem;margin-bottom:1.5rem;text-transform:uppercase}
-    .btn{padding:.8rem 1.6rem;font-weight:700;text-transform:uppercase;font-size:.82rem;border-radius:6px;text-decoration:none;display:inline-block;transition:all .3s}
-    .btn.primary{background:#01ffc0;color:#000}
-    .btn.secondary{border:2px solid #fff;color:#fff}
-    .btn:hover{transform:translateY(-3px);box-shadow:0 6px 16px rgba(1,255,192,.3)}
-    .hero img{width:340px;height:340px;object-fit:cover;border:0.5px solid #fff;border-radius:6px;box-shadow:0 18px 36px rgba(0,0,0,.4)}
-    .section{padding:4rem 2rem;display:flex;flex-direction:column;align-items:center}
-    h2{font-size:2.4rem;font-weight:900;color:#01ffc0;margin-bottom:2rem;text-align:center;text-transform:uppercase}
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(2,1fr);
-      gap:2rem;
-      max-width:800px;
-      width:100%;
-      margin:0 auto;
-      padding:0 1rem;
-    }
-    .card{
-      background:#1e2a24;
-      border:1px solid #333;
-      border-radius:14px;
-      overflow:hidden;
-      box-shadow:0 6px 16px rgba(0,0,0,.5);
-      transition:all .4s;
-      min-height:420px;
-      display:flex;
-      flex-direction:column;
-      cursor:pointer;
-      transform:translateY(40px);
-      opacity:0;
-    }
-    .card.animated{
-      opacity:1;
-      transform:translateY(0);
-      transition:all 0.7s ease;
-    }
-    .card:hover{transform:translateY(-8px);box-shadow:0 16px 32px rgba(1,255,192,.15)}
-    .card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(1,255,192,.1),transparent);opacity:0;transition:opacity .3s;border-radius:14px}
+    
+    /* Hero Section */
+    .hero{min-height:100vh;display:flex;align-items:center;justify-content:space-between;padding:6rem 3rem 3rem;max-width:1300px;margin:0 auto;gap:4rem;position:relative}
+    .hero::before{content:'';position:absolute;top:20%;right:10%;width:400px;height:400px;background:radial-gradient(circle,rgba(1,255,192,.1),transparent);border-radius:50%;z-index:0;pointer-events:none}
+    .hero-content{z-index:1;max-width:600px}
+    .hero h1{font-size:5.5rem;font-weight:900;color:#fff;line-height:.9;letter-spacing:-5px;margin-bottom:1rem;background:linear-gradient(135deg,#fff,#01ffc0);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .badge{font-family:'Fira Mono',monospace;color:#01ffc0;font-size:.95rem;margin-bottom:.5rem;text-transform:uppercase;letter-spacing:2px;font-weight:700}
+    .hero-subtitle{font-size:1.2rem;color:#aaa;margin-bottom:2rem;font-weight:600;line-height:1.6}
+    .btn-group{display:flex;gap:1rem;margin-top:2rem;flex-wrap:wrap}
+    .btn{padding:.9rem 1.8rem;font-weight:700;text-transform:uppercase;font-size:.82rem;border-radius:8px;text-decoration:none;display:inline-block;transition:all .3s;font-family:'Fira Mono',monospace}
+    .btn.primary{background:#01ffc0;color:#000;border:2px solid #01ffc0}
+    .btn.secondary{border:2px solid #01ffc0;color:#01ffc0;background:transparent}
+    .btn:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(1,255,192,.4)}
+    .btn.primary:hover{background:#00d9a3}
+    .hero-image{position:relative;z-index:1}
+    .hero img{width:380px;height:380px;object-fit:cover;border:6px solid #01ffc0;border-radius:20px;box-shadow:0 20px 60px rgba(1,255,192,.3);transition:transform .3s}
+    .hero img:hover{transform:scale(1.02) rotate(-1deg)}
+    
+    /* Sections */
+    .section{padding:5rem 2rem;display:flex;flex-direction:column;align-items:center;position:relative}
+    .section::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:80%;height:1px;background:linear-gradient(90deg,transparent,rgba(1,255,192,.3),transparent)}
+    h2{font-size:3rem;font-weight:900;color:#01ffc0;margin-bottom:3rem;text-align:center;text-transform:uppercase;letter-spacing:2px;position:relative;display:inline-block}
+    h2::after{content:'';position:absolute;bottom:-10px;left:50%;transform:translateX(-50%);width:60%;height:4px;background:#01ffc0;border-radius:2px}
+
+    /* Projects Grid */
+    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2.5rem;max-width:1000px;width:100%;margin:0 auto;padding:0 1rem}
+    .card{background:linear-gradient(135deg,rgba(30,42,36,.8),rgba(20,30,25,.8));border:1px solid rgba(1,255,192,.2);border-radius:16px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.6);transition:all .4s;min-height:420px;display:flex;flex-direction:column;cursor:pointer;position:relative}
+    .card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,transparent,rgba(1,255,192,.05));opacity:0;transition:opacity .3s}
+    .card:hover{transform:translateY(-10px);box-shadow:0 20px 50px rgba(1,255,192,.3);border-color:#01ffc0}
     .card:hover::before{opacity:1}
-    .card img{width:100%;height:160px;object-fit:cover;border-bottom:3px solid #01ffc0;transition:transform .5s;background:#111}
-    .card:hover img{transform:scale(1.06)}
-    .card-content{padding:1.2rem;flex-grow:1;display:flex;flex-direction:column;justify-content:space-between;position:relative;z-index:2}
-    .card h3{font-size:1.3rem;color:#01ffc0;margin-bottom:.5rem;font-weight:900;text-transform:uppercase}
-    .card p{background:#111;color:#ccc;padding:.9rem;border-radius:8px;font-size:.9rem;line-height:1.5;flex-grow:1;margin-bottom:.8rem}
-    .card .btn{background:#01ffc0;color:#000;padding:.65rem 1.3rem;font-size:.8rem;align-self:flex-start}
-    .card .btn:hover{background:#00cc99}
-    .skills{max-width:560px;width:100%;margin:1.5rem 0}
-    .skill{margin-bottom:1.2rem}
-    .skill span{font-weight:700;display:block;margin-bottom:.4rem;font-size:.95rem}
-    .bar{height:12px;background:#333;border-radius:6px;overflow:hidden}
-    .progress{height:100%;background:#01ffc0;border-radius:6px;width:0;transition:width 1.8s ease}
-    footer{background:#000;padding:2.2rem 2rem;display:flex;flex-wrap:wrap;justify-content:space-between;font-size:.88rem;color:#aaa;border-top:1px solid #444}
-    footer a{color:#01ffc0;text-decoration:none}
-    footer a:hover{text-decoration:underline}
-    @media (max-width:768px){
-      .hero{flex-direction:column;text-align:center;padding-top:6rem}
-      .hero h1{font-size:3.6rem;letter-spacing:-2px}
-      .hero img{width:240px;height:240px}
-      .nav ul{display:none;flex-direction:column;position:absolute;top:60px;left:0;width:100%;background:#000;padding:1.5rem;border-bottom:1px solid #444}
+    .card img{width:100%;height:200px;object-fit:cover;border-bottom:3px solid #01ffc0;transition:transform .5s;background:#111}
+    .card:hover img{transform:scale(1.08)}
+    .card-content{padding:1.8rem;flex-grow:1;display:flex;flex-direction:column;justify-content:space-between;position:relative;z-index:2}
+    .card h3{font-size:1.5rem;color:#01ffc0;margin-bottom:1rem;font-weight:900;text-transform:uppercase;letter-spacing:1px}
+    .card p{color:#ccc;font-size:1rem;line-height:1.7;flex-grow:1;margin-bottom:1.2rem}
+    .card .btn{background:#01ffc0;color:#000;padding:.7rem 1.4rem;font-size:.8rem;align-self:flex-start;border:2px solid #01ffc0}
+    .card .btn:hover{background:#00cc99;transform:translateX(5px)}
+
+    /* Skills Section */
+    .skills{max-width:700px;width:100%;margin:2rem 0}
+    .skill{margin-bottom:2rem;background:rgba(30,42,36,.5);padding:1.5rem;border-radius:12px;border:1px solid rgba(1,255,192,.2);transition:all .3s}
+    .skill:hover{border-color:#01ffc0;background:rgba(30,42,36,.8)}
+    .skill-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:.8rem}
+    .skill span{font-weight:700;font-size:1.1rem;color:#01ffc0}
+    .skill-percent{font-family:'Fira Mono',monospace;color:#aaa;font-size:.9rem}
+    .bar{height:14px;background:#1a2520;border-radius:8px;overflow:hidden;box-shadow:inset 0 2px 4px rgba(0,0,0,.5)}
+    .progress{height:100%;background:linear-gradient(90deg,#01ffc0,#00d9a3);border-radius:8px;width:0;transition:width 2s ease;position:relative}
+    .progress::after{content:'';position:absolute;top:0;right:0;bottom:0;width:50%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.3));animation:shimmer 2s infinite}
+    @keyframes shimmer{0%,100%{opacity:0}50%{opacity:1}}
+
+    /* About Section */
+    .about-content{max-width:800px;text-align:center;line-height:2;color:#ccc;font-size:1.1rem;background:rgba(30,42,36,.5);padding:2.5rem;border-radius:16px;border:1px solid rgba(1,255,192,.2)}
+    .about-content strong{color:#01ffc0}
+
+    /* Footer */
+    footer{background:#000;padding:3rem 2rem;display:flex;flex-wrap:wrap;justify-content:space-between;gap:2rem;font-size:.9rem;color:#aaa;border-top:2px solid rgba(1,255,192,.3)}
+    footer div{flex:1;min-width:200px}
+    footer strong{color:#01ffc0;display:block;margin-bottom:.5rem;font-size:1rem}
+    footer a{color:#01ffc0;text-decoration:none;transition:color .3s}
+    footer a:hover{color:#00d9a3;text-decoration:underline}
+
+    /* Responsive */
+    @media(max-width:768px){
+      .hero{flex-direction:column;text-align:center;padding-top:7rem;gap:2rem}
+      .hero::before{width:300px;height:300px;top:10%;right:0}
+      .hero h1{font-size:3.2rem;letter-spacing:-2px}
+      .hero-subtitle{font-size:1rem}
+      .hero img{width:280px;height:280px}
+      .btn-group{justify-content:center}
+      .nav ul{display:none;flex-direction:column;position:absolute;top:60px;left:0;width:100%;background:rgba(0,0,0,.98);padding:2rem;border-bottom:1px solid rgba(1,255,192,.3);gap:1rem}
       .nav ul.active{display:flex}
       .hamburger{display:block}
-      .grid{grid-template-columns:1fr;gap:1.8rem;padding:0 1.5rem}
-      .card{min-height:400px}
-      .card img{height:150px}
-      .section{padding:3.5rem 1.5rem}
-      h2{font-size:2.1rem}
+      .grid{grid-template-columns:1fr;gap:2rem}
+      .card{min-height:380px}
+      .card img{height:180px}
+      .section{padding:4rem 1.5rem}
+      h2{font-size:2.2rem}
+      .about-content{padding:2rem;font-size:1rem}
+      footer{flex-direction:column;text-align:center}
     }
+
+    /* Loading Animation */
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-20px)}}
+    .hero-image{animation:float 6s ease-in-out infinite}
   </style>
 </head>
 <body>
+
   <!-- NAVIGATION -->
   <nav class="nav">
-    <div class="hamburger">Menu</div>
+    <div class="hamburger">☰</div>
     <ul>
-      <li><a href="index.html">[Accueil]</a></li>
-      <li><a href="Pro.html">[Profile]</a></li>
-      <li><a href="Projet.html">[Projets]</a></li>
-      <li><a href="Veille Tech.html">[V.Tech]</a></li>
-      <li><a href="GLPI.html">[GLPI]</a></li>
-      <li><a href="Tableau de synthese.html">[TDS]</a></li>
-      <li><a href="Contact.html">[Contact]</a></li>
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="Pro.html">Profil</a></li>
+      <li><a href="Projet.html">Projets</a></li>
+      <li><a href="Veille Tech.html">V.Tech</a></li>
+      <li><a href="glpi.html">GLPI</a></li>
+      <li><a href="Tableau de synthese.html">TDS</a></li>
+      <li><a href="Contact.html">Contact</a></li>
     </ul>
   </nav>
 
   <!-- HERO -->
   <header id="accueil" class="hero">
-    <div>
-      <h1>Bryan Rambelo</h1>
+    <div class="hero-content">
       <div class="badge">BTS SIO – MCCI Business School</div>
-      <p style="margin-bottom:1.5rem;color:#ccc">Développeur web passionné de la technologie</p>
-      <div style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center">
-        <a href="#projets" class="btn primary">Projets</a>
-        <a href="Cv.html" class="btn secondary">CV</a>
+      <h1>Bryan Rambelo</h1>
+      <p class="hero-subtitle">Développeur Web Full-Stack<br>Passionné par les technologies modernes</p>
+      <div class="btn-group">
+        <a href="#projets" class="btn primary">Découvrir mes projets</a>
+        <a href="Cv.html" class="btn secondary">voir mon cv</a>
       </div>
     </div>
-    <img src="image/fond .jpeg" alt="Bryan" loading="lazy" onerror="this.src='https://via.placeholder.com/340?text=Photo+Introuvable'">
+    <div class="hero-image">
+      <img src="image/fond .jpeg" alt="Bryan Rambelo - Développeur Web" loading="lazy" onerror="this.src='https://via.placeholder.com/380?text=Bryan+Rambelo'">
+    </div>
   </header>
 
   <main>
@@ -122,39 +146,37 @@
       <h2>Mes Projets</h2>
       <div class="grid">
         <div class="card">
-          <img src="image/screenshot-2025-05-07.png" alt="Supercar" loading="lazy" onerror="this.src='https://via.placeholder.com/400x160/1e2a24/01ffc0?text=Supercar'">
+          <img src="image/screenshot-2025-05-07.png" alt="Supercar - Plateforme de vente" loading="lazy" onerror="this.src='https://via.placeholder.com/400x200/1e2a24/01ffc0?text=Supercar'">
           <div class="card-content">
-
             <h3>Supercar</h3>
-            <p>Plateforme de vente de voitures de luxe avec design moderne et animations fluides.</p>
-            <a href="../Supercar/supercar client/Acceuil.html" class="btn">Voir</a>
+            <p>Plateforme de vente de voitures de luxe développée avec HTML5, CSS3 et JavaScript. Interface moderne avec animations fluides et gestion dynamique du catalogue.</p>
+            <a href="../Supercar/supercar client/Acceuil.html" class="btn">Voir le projet</a>
           </div>
         </div>
+        
         <div class="card">
-          <img src="image/voucher-preview.jpg" alt="Voucher" loading="lazy" onerror="this.src='https://via.placeholder.com/400x160/1e2a24/01ffc0?text=Voucher'">
+          <img src="image/voucher-preview.jpg" alt="Voucher - Système de gestion" loading="lazy" onerror="this.src='https://via.placeholder.com/400x200/1e2a24/01ffc0?text=Voucher'">
           <div class="card-content">
-
-
             <h3>Voucher</h3>
-            <p>Gestion d'achats en ligne avec tableau de bord admin sécurisé.</p>
-            <a href="lien du site " class="btn">Voir</a>
+            <p>Application web de gestion d'achats en ligne avec tableau de bord administrateur sécurisé. Développée en PHP/MySQL avec système d'authentification.</p>
+            <a href="#" class="btn">En développement</a>
           </div>
         </div>
+        
         <div class="card">
-          <img src="image/facturation-preview.jpg" alt="Facturation" loading="lazy" onerror="this.src='https://via.placeholder.com/400x160/1e2a24/01ffc0?text=Facturation'">
+          <img src="image/facturation-preview.jpg" alt="Facturation - Stage 1" loading="lazy" onerror="this.src='https://via.placeholder.com/400x200/1e2a24/01ffc0?text=Facturation'">
           <div class="card-content">
-
-            
             <h3>Stage 1 : Facturation</h3>
-            <p>Solution web de facturation PDF pour entreprise locale.</p>
-            <a href="#" class="btn">Bientôt</a>
+            <p>Solution web de génération de factures PDF pour entreprise locale. Gestion complète des clients, produits et historique des transactions.</p>
+            <a href="#" class="btn">Bientôt disponible</a>
           </div>
         </div>
+        
         <div class="card">
-          <img src="image/stage2-preview.jpg" alt="Stage 2" loading="lazy" onerror="this.src='https://via.placeholder.com/400x160/1e2a24/01ffc0?text=Stage+2'">
+          <img src="image/stage2-preview.jpg" alt="Stage 2 - Refonte" loading="lazy" onerror="this.src='https://via.placeholder.com/400x200/1e2a24/01ffc0?text=Stage+2'">
           <div class="card-content">
-            <h3>Stage 2</h3>
-            <p>Refonte et optimisation d'une application existante.</p>
+            <h3>Stage 2 : Refonte</h3>
+            <p>Refonte et optimisation d'une application web existante. Amélioration des performances, modernisation de l'interface et ajout de nouvelles fonctionnalités.</p>
             <a href="#" class="btn">En cours</a>
           </div>
         </div>
@@ -163,137 +185,203 @@
 
     <!-- COMPÉTENCES -->
     <section id="skills" class="section">
-      <h2>Compétences</h2>
+      <h2>Compétences Techniques</h2>
       <div class="skills">
-        <div class="skill"><span>HTML5 / CSS3</span><div class="bar"><div class="progress" data-width="90%"></div></div></div>
-        <div class="skill"><span>PHP / MySQL</span><div class="bar"><div class="progress" data-width="60%"></div></div></div>
-        <div class="skill"><span>JavaScript</span><div class="bar"><div class="progress" data-width="45%"></div></div></div>
-        <div class="skill"><span>Python</span><div class="bar"><div class="progress" data-width="35%"></div></div></div>
+        <div class="skill">
+          <div class="skill-header">
+            <span>HTML5 / CSS3</span>
+            <span class="skill-percent">90%</span>
+          </div>
+          <div class="bar"><div class="progress" data-width="90%"></div></div>
+        </div>
+        
+        <div class="skill">
+          <div class="skill-header">
+            <span>PHP / MySQL</span>
+            <span class="skill-percent">60%</span>
+          </div>
+          <div class="bar"><div class="progress" data-width="60%"></div></div>
+        </div>
+        
+        <div class="skill">
+          <div class="skill-header">
+            <span>JavaScript</span>
+            <span class="skill-percent">45%</span>
+          </div>
+          <div class="bar"><div class="progress" data-width="45%"></div></div>
+        </div>
+        
+        <div class="skill">
+          <div class="skill-header">
+            <span>Python</span>
+            <span class="skill-percent">35%</span>
+          </div>
+          <div class="bar"><div class="progress" data-width="35%"></div></div>
+        </div>
       </div>
     </section>
 
     <!-- À PROPOS -->
     <section id="apropos" class="section">
-      <h2>À propos</h2>
-      <p style="max-width:700px;text-align:center;line-height:1.9;color:#ccc">
-        Étudiant <strong>BTS SIO SLAM</strong> à <strong>MCCI Business School</strong>.<br>
-        Passionné par le <strong>développement full-stack</strong> et les <strong>expériences immersives</strong>.<br>
-        À la recherche d’un <strong>stage ou alternance</strong>.
-      </p>
+      <h2>À Propos</h2>
+      <div class="about-content">
+        <p>
+          Étudiant en <strong>BTS SIO option SLAM</strong> (Solutions Logicielles et Applications Métiers) à la <strong>MCCI Business School de Maurice</strong>.
+        </p>
+        <p style="margin-top:1rem">
+          Passionné par le <strong>développement full-stack</strong> et les <strong>expériences web immersives</strong>, je cherche constamment à perfectionner mes compétences techniques.
+        </p>
+        <p style="margin-top:1rem">
+          Actuellement à la recherche d'un <strong>stage ou alternance</strong> pour mettre en pratique mes connaissances et contribuer à des projets innovants.
+        </p>
+      </div>
     </section>
   </main>
 
+  <!-- FOOTER -->
   <footer>
-    <div><strong>Tél</strong><br>+230 58 18 75 61</div>
-    <div><strong>Email</strong><br>bryanrambelo@gmail.com</div>
-    <div><strong>Suivez-moi</strong><br><a href="https://linkedin.com/in/bryanrambelo" target="_blank">LinkedIn</a></div>
-    <div>© 2025 Bryan Rambelo</div>
+    <div>
+      <strong>Téléphone</strong>
+      +230 58 18 75 61
+    </div>
+    <div>
+      <strong>Email</strong>
+      bryanrambelo@gmail.com
+    </div>
+    <div>
+      <strong>Suivez-moi</strong>
+      <a href="https://linkedin.com/in/bryanrambelo" target="_blank">LinkedIn</a>
+    </div>
+    <div>
+      <strong>Copyright</strong>
+      © 2025 Bryan Rambelo
+    </div>
   </footer>
 
-  <!-- Scripts with defer and fallback -->
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script>
-    if (typeof gsap === 'undefined') {
-      document.write('<script src="js/gsap.min.js"><\/script>');
-    }
-  </script>
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script>
-    if (typeof ScrollTrigger === 'undefined') {
-      document.write('<script src="js/ScrollTrigger.min.js"><\/script>');
-    }
-  </script>
-  <script defer src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
-  <script>
-    if (typeof Lenis === 'undefined') {
-      document.write('<script src="js/lenis.min.js"><\/script>');
-    }
-  </script>
-  <script>
-    // Smooth scroll with fallback
-    let lenis;
-    try {
-      lenis = new Lenis({ duration: 1.3, easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
-      function raf(t) {
-        lenis.raf(t);
-        requestAnimationFrame(raf);
-      }
+    // Smooth scroll avec Lenis
+    const lenis = new Lenis({
+      duration: 1.4,
+      easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smooth: true
+    });
+    
+    function raf(time) {
+      lenis.raf(time);
       requestAnimationFrame(raf);
-    } catch (e) {
-      console.error('Lenis failed to initialize:', e);
     }
+    requestAnimationFrame(raf);
 
-    // GSAP animations with fallback
-    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-      gsap.registerPlugin(ScrollTrigger);
+    // GSAP Animations
+    gsap.registerPlugin(ScrollTrigger);
 
-      // Hero animations
-      gsap.from('.hero > div', { opacity: 0, x: -60, duration: 1, delay: 0.3 });
-      gsap.from('.hero img', { opacity: 0, x: 60, duration: 1, delay: 0.3 });
+    // Hero animation
+    gsap.from('.hero-content', {
+      opacity: 0,
+      x: -60,
+      duration: 1.2,
+      ease: 'power3.out',
+      delay: 0.3
+    });
+    
+    gsap.from('.hero-image', {
+      opacity: 0,
+      x: 60,
+      duration: 1.2,
+      ease: 'power3.out',
+      delay: 0.5
+    });
 
-      // Card animations
-      const cards = document.querySelectorAll('.card');
-      cards.forEach((card, i) => {
-        gsap.to(card, {
-          opacity: 1,
-          y: 0,
-          duration: 0.7,
-          delay: i * 0.15,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: '.grid',
-            start: 'top 80%',
-            onEnter: () => card.classList.add('animated')
-          }
-        });
-      });
-
-      // Section animations
-      gsap.utils.toArray('.section').forEach(s => {
-        gsap.from(s, {
-          opacity: 0,
-          y: 60,
-          duration: 1,
-          scrollTrigger: { trigger: s, start: 'top 80%' }
-        });
-      });
-
-      // Progress bar animations
-      gsap.utils.toArray('.progress').forEach(p => {
-        gsap.to(p, {
-          width: p.dataset.width,
-          duration: 2,
-          ease: 'power3.out',
-          scrollTrigger: { trigger: '.skills', start: 'top 80%' }
-        });
-      });
-    } else {
-      console.error('GSAP or ScrollTrigger not loaded');
-    }
-
-    // Fallback for animations
-    setTimeout(() => {
-      document.querySelectorAll('.card').forEach(card => {
-        if (!card.classList.contains('animated')) {
-          card.classList.add('animated');
+    // Cards animation
+    gsap.utils.toArray('.card').forEach((card, i) => {
+      gsap.from(card, {
+        opacity: 0,
+        y: 60,
+        duration: 0.8,
+        delay: i * 0.15,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: '.grid',
+          start: 'top 75%'
         }
       });
-      document.querySelectorAll('.progress').forEach(p => {
-        p.style.width = p.dataset.width;
-      });
-    }, 2000);
+    });
 
-    // Menu mobile
+    // Section titles animation
+    gsap.utils.toArray('h2').forEach(title => {
+      gsap.from(title, {
+        opacity: 0,
+        y: 40,
+        duration: 0.8,
+        scrollTrigger: {
+          trigger: title,
+          start: 'top 80%'
+        }
+      });
+    });
+
+    // Skills animation
+    gsap.utils.toArray('.skill').forEach((skill, i) => {
+      gsap.from(skill, {
+        opacity: 0,
+        x: -50,
+        duration: 0.6,
+        delay: i * 0.1,
+        scrollTrigger: {
+          trigger: '.skills',
+          start: 'top 75%'
+        }
+      });
+    });
+
+    // Progress bars animation
+    gsap.utils.toArray('.progress').forEach(p => {
+      gsap.to(p, {
+        width: p.dataset.width,
+        duration: 2,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: '.skills',
+          start: 'top 70%'
+        }
+      });
+    });
+
+    // About section animation
+    gsap.from('.about-content', {
+      opacity: 0,
+      y: 50,
+      duration: 1,
+      scrollTrigger: {
+        trigger: '.about-content',
+        start: 'top 80%'
+      }
+    });
+
+    // Menu mobile toggle
     document.querySelector('.hamburger').addEventListener('click', () => {
       document.querySelector('.nav ul').classList.toggle('active');
     });
 
-    // Double-click on cards
-    document.querySelectorAll('.card').forEach(c => {
-      c.addEventListener('dblclick', () => {
-        const a = c.querySelector('a');
-        if (a && a.href !== '#' && !a.textContent.includes('Bientôt') && !a.textContent.includes('En cours')) {
-          window.open(a.href, '_blank');
+    //scroll 
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if(target) {
+          lenis.scrollTo(target, {offset: -80});
+          // Fermer le menu mobile
+          document.querySelector('.nav ul').classList.remove('active');
+        }
+      });
+    });
+
+    // Double-click sur les cartes pour ouvrir
+    document.querySelectorAll('.card').forEach(card => {
+      card.addEventListener('dblclick', () => {
+        const link = card.querySelector('a');
+        if(link && link.href !== '#' && !link.textContent.includes('Bientôt') && !link.textContent.includes('En cours')) {
+          window.open(link.href, '_blank');
         }
       });
     });

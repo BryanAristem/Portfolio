@@ -1,77 +1,282 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mon CV - RAMBELOARISOA</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #2f3a00;
-            text-align: center;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mon CV | Bryan Rambelo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Fira+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
+  <style>
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'Inter',sans-serif;background:#0a0f0d;color:#e0e0e0;overflow-x:hidden;line-height:1.7}
+    
+    /* Navigation */
+    .nav{background:rgba(0,0,0,.95);backdrop-filter:blur(10px);padding:1.2rem 2rem;position:fixed;top:0;width:100%;z-index:1000;display:flex;justify-content:center;border-bottom:1px solid rgba(1,255,192,.2);box-shadow:0 4px 20px rgba(0,0,0,.3)}
+    .nav ul{list-style:none;display:flex;gap:2rem;align-items:center}
+    .nav a{color:#e0e0e0;text-decoration:none;font-family:'Fira Mono',monospace;font-weight:700;text-transform:uppercase;font-size:.85rem;transition:all .3s;position:relative;padding:.5rem 0}
+    .nav a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:#01ffc0;transition:width .3s}
+    .nav a:hover{color:#01ffc0}
+    .nav a:hover::after{width:100%}
+    .hamburger{display:none;cursor:pointer;font-size:1.6rem;color:#e0e0e0}
+    
+    /* Hero Section */
+    .hero{min-height:60vh;display:flex;align-items:center;justify-content:center;padding:8rem 3rem 4rem;position:relative;text-align:center}
+    .hero::before{content:'';position:absolute;top:20%;left:50%;transform:translateX(-50%);width:450px;height:450px;background:radial-gradient(circle,rgba(1,255,192,.15),transparent);border-radius:50%;z-index:0;pointer-events:none}
+    .hero-content{z-index:1;max-width:800px}
+    .hero h1{font-size:5rem;font-weight:900;color:#fff;line-height:.9;letter-spacing:-5px;margin-bottom:1.5rem;background:linear-gradient(135deg,#fff,#01ffc0);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .badge{font-family:'Fira Mono',monospace;color:#01ffc0;font-size:.95rem;margin-bottom:.5rem;text-transform:uppercase;letter-spacing:2px;font-weight:700}
+    .hero-subtitle{font-size:1.2rem;color:#aaa;margin-bottom:2.5rem;font-weight:600}
 
-        header {
-            background-color: #000000;
-            color: white;
-            padding: 30px 20px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-        }
+    /* Buttons */
+    .btn-group{
+      display:flex;
+      gap:1rem;
+      justify-content:center;
+      margin-top:2rem;
+    }
+    .btn{
+      background:linear-gradient(135deg, #01ffc0, #00d9a3);
+      color:#000;
+      padding:.9rem 1.8rem;
+      text-decoration:none;
+      font-weight:700;
+      text-transform:uppercase;
+      font-size:.85rem;
+      border-radius:12px;
+      transition:all .3s cubic-bezier(0.4, 0, 0.2, 1);
+      font-family:'Fira Mono',monospace;
+      position:relative;
+      overflow:hidden;
+      box-shadow:0 4px 12px rgba(1,255,192,.4);
+      display:inline-flex;
+      align-items:center;
+      gap:.5rem;
+    }
+    .btn::before{
+      content:'';
+      position:absolute;
+      top:0;
+      left:-100%;
+      width:100%;
+      height:100%;
+      background:linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      transition:left 0.6s ease;
+    }
+    .btn:hover::before{left:100%}
+    .btn:hover{
+      background:linear-gradient(135deg, #00e6ac, #01ffc0);
+      transform:translateY(-3px);
+      box-shadow:0 8px 20px rgba(1,255,192,.6);
+    }
+    .btn:active{transform:translateY(-1px)}
+    .btn.secondary{
+      background:transparent;
+      border:2px solid #01ffc0;
+      color:#01ffc0;
+      box-shadow:none;
+    }
+    .btn.secondary:hover{
+      background:rgba(1,255,192,.1);
+      border-color:#01ffc0;
+      box-shadow:0 8px 20px rgba(1,255,192,.3);
+    }
 
-        header h1 {
-            margin: 0;
-            font-size: 2em;
-        }
+    /* CV Container */
+    main{padding:4rem 2rem 5rem;display:flex;flex-direction:column;align-items:center;position:relative}
+    main::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:80%;height:1px;background:linear-gradient(90deg,transparent,rgba(1,255,192,.3),transparent)}
 
-        .btn-container {
-            text-align: center; /* Boutons centrés, comme dans votre dernier code */
-            margin: 20px 20px 30px 20px; /* Espacement en haut, à gauche et en bas */
-        }
+    .cv-wrapper{
+      max-width:950px;
+      width:100%;
+      margin:0 auto;
+      background:linear-gradient(135deg,rgba(30,42,36,.8),rgba(20,30,25,.8));
+      border:1px solid rgba(1,255,192,.2);
+      border-radius:20px;
+      padding:2rem;
+      box-shadow:0 10px 30px rgba(0,0,0,.6);
+      position:relative;
+      overflow:hidden;
+    }
+    .cv-wrapper::before{
+      content:'';
+      position:absolute;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      background:linear-gradient(135deg,transparent,rgba(1,255,192,.05));
+      opacity:0;
+      transition:opacity .4s;
+      pointer-events:none;
+    }
+    .cv-wrapper:hover::before{opacity:1}
 
-        .btn-retour, .btn-telecharger-pdf {
-            display: inline-block;
-            margin: 0 10px 0 0; /* Espacement entre les boutons */
-            padding: 12px 24px;
-            background-color: #0a0900;
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            transition: background-color 0.3s ease;
-        }
+    .cv-container{
+      position:relative;
+      z-index:1;
+    }
+    .cv-container img{
+      width:100%;
+      height:auto;
+      border-radius:12px;
+      box-shadow:0 8px 20px rgba(0,0,0,.4);
+      transition:transform .3s ease;
+      border:2px solid rgba(1,255,192,.2);
+    }
+    .cv-container img:hover{
+      transform:scale(1.02);
+      box-shadow:0 12px 30px rgba(1,255,192,.2);
+    }
 
-        .btn-retour:hover, .btn-telecharger-pdf:hover {
-            background-color: #ffd700;
-            color: #fff;
-        }
+    /* Footer */
+    footer{background:#000;padding:3rem 2rem;display:flex;flex-wrap:wrap;justify-content:space-between;gap:2rem;font-size:.9rem;color:#aaa;border-top:2px solid rgba(1,255,192,.3)}
+    footer div{flex:1;min-width:200px}
+    footer strong{color:#01ffc0;display:block;margin-bottom:.5rem;font-size:1rem}
+    footer a{color:#01ffc0;text-decoration:none;transition:color .3s}
+    footer a:hover{color:#00d9a3;text-decoration:underline}
 
-        .cv-container {
-            margin: 30px auto;
-            max-width: 900px;
-        }
-
-        .cv-container img {
-            width: 100%;
-            height: auto;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-        }
-    </style>
+    /* Responsive */
+    @media(max-width:768px){
+      .hero{padding:7rem 2rem 3rem;min-height:50vh}
+      .hero::before{width:300px;height:300px}
+      .hero h1{font-size:3rem;letter-spacing:-2px}
+      .hero-subtitle{font-size:1.05rem}
+      .btn-group{flex-direction:column;align-items:center}
+      .btn{width:100%;max-width:280px;justify-content:center}
+      .cv-wrapper{padding:1.5rem}
+      main{padding:3rem 1.5rem 4rem}
+      .nav ul{display:none;flex-direction:column;position:absolute;top:60px;left:0;width:100%;background:rgba(0,0,0,.98);padding:2rem;border-bottom:1px solid rgba(1,255,192,.3);gap:1rem}
+      .nav ul.active{display:flex}
+      .hamburger{display:block}
+      footer{flex-direction:column;text-align:center}
+    }
+  </style>
 </head>
 <body>
 
-    <header>
-        <h1>Mon C.V</h1>
-    </header>
+  <!-- NAVIGATION -->
+  <nav class="nav">
+    <div class="hamburger">☰</div>
+    <ul>
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="Pro.html">Profil</a></li>
+      <li><a href="Projet.html">Projets</a></li>
+      <li><a href="Veille Tech.html">Veille Tech</a></li>
+      <li><a href="GLPI.html">GLPI</a></li>
+      <li><a href="Tableau de synthese.html">Tableau</a></li>
+      <li><a href="Contact.html">Contact</a></li>
+    </ul>
+  </nav>
 
-    <div class="btn-container">
-        <a href="index.html" class="btn-retour">← Retour au Portfolio</a>
-        <a href="Les CV/CV Etudiant_RAMBELOARISOA_Bryan.pdf" class="btn-telecharger-pdf" download>Télécharger le CV</a>
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-content">
+      <div class="badge">Curriculum Vitae • Portfolio</div>
+      <h1>Mon CV</h1>
+      <p class="hero-subtitle">Découvrez mon parcours professionnel et académique</p>
+      
+     
+  </header>
+
+  <main>
+    <div class="cv-wrapper">
+      <div class="cv-container">
+        <img src="Les CV/Cv .jpg" alt="CV de RAMBELOARISOA Mandrindra Yves Bryan">
+      </div>
     </div>
+  </main>
 
-    <div class="cv-container">
-        <img src="Les CV/Cv .jpg" alt="CV de RAMBELOARISOA">
+   <div class="btn-group">
+        <a href="index.html" class="btn secondary">
+          <i class="fas fa-arrow-left"></i> Retour au Portfolio
+        </a>
+        <a href="Les CV/CV Etudiant_RAMBELOARISOA_Bryan.pdf" class="btn" download>
+          <i class="fas fa-download"></i> Télécharger le CV
+        </a>
+      </div>
     </div>
+    <br>
+</br>
 
+  <!-- FOOTER -->
+  <footer>
+    <div>
+      <strong>Téléphone</strong>
+      +230 58 18 75 61
+    </div>
+    <div>
+      <strong>Email</strong>
+      bryanrambelo@gmail.com
+    </div>
+    <div>
+      <strong>Suivez-moi</strong>
+      <a href="https://linkedin.com/in/bryanrambelo" target="_blank">LinkedIn</a>
+    </div>
+    <div>
+      <strong>Copyright</strong>
+      © 2025 Bryan Rambelo
+    </div>
+  </footer>
+
+  <script>
+    // Smooth scroll avec Lenis
+    const lenis = new Lenis({
+      duration: 1.4,
+      easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smooth: true
+    });
+    
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    // Animations GSAP
+    // Hero animation
+    gsap.from('.hero-content', {
+      opacity: 0,
+      y: 60,
+      duration: 1,
+      ease: 'power3.out'
+    });
+
+    // CV wrapper animation
+    gsap.from('.cv-wrapper', {
+      opacity: 0,
+      y: 50,
+      duration: 0.8,
+      delay: 0.3,
+      ease: 'power3.out'
+    });
+
+    // Menu mobile
+    document.querySelector('.hamburger').addEventListener('click', () => {
+      document.querySelector('.nav ul').classList.toggle('active');
+    });
+
+    // Animation des boutons au clic
+    document.querySelectorAll('.btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        gsap.to(btn, {
+          scale: 0.95,
+          duration: 0.1,
+          yoyo: true,
+          repeat: 1
+        });
+      });
+    });
+
+    // Zoom sur l'image au clic
+    document.querySelector('.cv-container img').addEventListener('click', function() {
+      if (this.requestFullscreen) {
+        this.requestFullscreen();
+      } else if (this.webkitRequestFullscreen) {
+        this.webkitRequestFullscreen();
+      }
+    });
+  </script>
 </body>
 </html>
