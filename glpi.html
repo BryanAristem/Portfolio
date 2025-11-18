@@ -73,145 +73,145 @@
   </nav>
 
   <!-- Hero GLPI -->
-  <header class="hero-glpi">
+   <header class="hero-glpi">
     <h1>GLPI</h1>
-    <p class="subtitle">Départage GLPI pour les projets SuperCar-Web & VMS - Gestion de parc et ticketing adaptés aux contextes professionnels</p>
+    <p class="subtitle">Mise en place d'une solution complète de gestion de parc informatique et de ticketing adaptée aux contextes professionnels</p>
   </header>
 
   <main>
     <section class="section">
-      <h2>1. Installation & Configuration</h2>
+      <h2>Contexte & Objectifs</h2>
       <div class="glpi-content">
-        <h3 style="color:#01ffc0;font-size:1.5rem;margin:2rem 0 1rem">SuperCar-Web</h3>
-        <ul>
-          <li>Installation du serveur <strong>WAMPSERVER</strong></li>
-          <li>Configuration Apache/MySQL pour cohabitation avec l'application web PHP</li>
-          <li>Paramétrage des Taches : Développement Web, Hébergement, Base de données, Administration du site</li>
-        </ul>
+        <p>Durant mon année de formation BTS SIO, j'ai déployé et configuré <strong>GLPI</strong> (Gestionnaire Libre de Parc Informatique) pour assurer le suivi et la maintenance de deux environnements professionnels distincts développés en parallèle.</p>
+        <p>L'objectif était de centraliser la gestion des équipements, des logiciels, des utilisateurs et des incidents techniques pour garantir un support efficace et une traçabilité complète des interventions.</p>
+      </div>
+    </section>
 
-        <h3 style="color:#01ffc0;font-size:1.5rem;margin:2rem 0 1rem">VMS (VoucherManager)</h3>
+    <section class="section">
+      <h2>Installation & Configuration</h2>
+      <div class="glpi-content">
+        <p>Mise en place de l'infrastructure GLPI sur deux environnements techniques :</p>
         <ul>
-          <li>Déploiement GLPI sur serveur <strong>PostgreSQL centralisé</strong></li>
-          <li>Configuration multi-sites (siège + points de vente/magasins)</li>
-          <li>Mise en place de connexions ODBC pour reporting Excel</li>
-          <li>Catégories spécifiques : Application JavaFX (siège), Application magasin, Base de données, Génération/Envoi bons, Rédemption</li>
+          <li>Déploiement sur serveur <strong>Ubuntu 12.04.2 LTS virtualisé</strong> avec Apache/MySQL pour l'application web</li>
+          <li>Configuration sur serveur <strong>PostgreSQL centralisé</strong> pour l'application desktop multi-sites</li>
+          <li>Intégration avec infrastructures existantes (multi-entrepôts, siège social, points de vente)</li>
+          <li>Paramétrage des catégories personnalisées selon les besoins : développement web, base de données, hébergement, applications JavaFX, génération PDF, rédemption</li>
+          <li>Mise en place de connexions ODBC pour reporting Excel automatisé</li>
         </ul>
       </div>
     </section>
 
     <section class="section">
-      <h2>2. Gestion des Tickets</h2>
+      <h2>Gestion des Tickets</h2>
       <div class="glpi-content">
-        <h3 style="color:#01ffc0;font-size:1.5rem;margin:2rem 0 1rem">SuperCar-Web</h3>
-        <p><strong>Types de tickets courants :</strong></p>
+        <p><strong>Types d'incidents traités :</strong></p>
         <ul>
-          <li>Bugs sur le formulaire de demande d'essai</li>
-          <li>Problèmes d'affichage responsive (desktop/tablette/smartphone)</li>
-          <li>Erreurs dans le module d'administration</li>
-          <li>Dysfonctionnements de la galerie avec pagination</li>
-          <li>Incidents sur l'hébergement distant</li>
+          <li>Bugs sur formulaires web et modules d'administration</li>
+          <li>Problèmes d'affichage responsive (desktop, tablette, smartphone)</li>
+          <li>Erreurs de génération PDF et codes QR/barres</li>
+          <li>Dysfonctionnements de pagination et galeries dynamiques</li>
+          <li>Incidents d'envoi emails automatiques</li>
+          <li>Erreurs de validation lors de scans QR en point de vente</li>
+          <li>Bugs dans workflows d'approbation et paiement</li>
+          <li>Problèmes d'hébergement et disponibilité serveurs</li>
         </ul>
-        <p><strong>Workflow :</strong> Utilisateurs : Admin site, Équipe développement MultiSys, Vendeurs (salesmen). Priorités selon impact sur visibilité web et génération de leads.</p>
-
-        <h3 style="color:#01ffc0;font-size:1.5rem;margin:2rem 0 1rem">VMS (VoucherManager)</h3>
-        <p><strong>Types de tickets courants :</strong></p>
-        <ul>
-          <li>Échec de génération de bons PDF (QR/Code-barres)</li>
-          <li>Problèmes d'envoi email automatique</li>
-          <li>Erreurs de validation lors de la rédemption en magasin</li>
-          <li>Bugs dans le processus paiement/approbation</li>
-          <li>Incidents de scan QR en point de vente</li>
-        </ul>
-        <p><strong>Workflow :</strong> Utilisateurs : Admin/Comptable (siège), Approbateurs, Superviseurs magasin, Équipe SSII. Priorités critiques pour les blocages de rédemption (impact direct sur clients).</p>
+        <p><strong>Workflow mis en place :</strong> Classification par priorité selon l'impact (critique pour blocages utilisateurs finaux, haute pour bugs affectant la visibilité, normale pour améliorations), attribution automatique selon les profils et compétences, suivi des SLA avec escalade si nécessaire.</p>
       </div>
     </section>
 
     <section class="section">
-      <h2>3. Gestion de Parc</h2>
+      <h2>Gestion de Parc</h2>
       <div class="glpi-content">
-        <h3 style="color:#01ffc0;font-size:1.5rem;margin:2rem 0 1rem">SuperCar-Web</h3>
         <p><strong>Inventaire matériel :</strong></p>
         <ul>
-          <li>Serveur physique (Intel Core i5, 8GB RAM, 1TB HDD)</li>
-          <li>Postes de travail développeurs (équipes MultiSys)</li>
-          <li>Smartphones pour vendeurs (accès mobile au site)</li>
+          <li>Serveurs physiques (Intel Core i5, 8GB RAM, 1TB HDD)</li>
+          <li>Serveurs PostgreSQL et MySQL centralisés</li>
+          <li>Postes de travail développeurs et administrateurs</li>
+          <li>Postes légers en points de vente</li>
+          <li>Smartphones pour accès mobile terrain</li>
+          <li>Scanners QR/codes-barres</li>
         </ul>
         <p><strong>Inventaire logiciel :</strong></p>
         <ul>
-          <li>Licences : Visual Studio 2015/2017/2019, PHPStorm</li>
-          <li>Serveurs : Xampp/Wamp, Apache, MySQL</li>
-          <li>Frameworks : Bootstrap, jQuery</li>
-          <li>Outils : FileZilla, phpMyAdmin</li>
-        </ul>
-
-        <h3 style="color:#01ffc0;font-size:1.5rem;margin:2rem 0 1rem">VMS (VoucherManager)</h3>
-        <p><strong>Inventaire matériel :</strong></p>
-        <ul>
-          <li>Serveur PostgreSQL centralisé</li>
-          <li>Postes siège (application JavaFX complète)</li>
-          <li>Postes magasins (application légère + scanners QR)</li>
-        </ul>
-        <p><strong>Inventaire logiciel :</strong></p>
-        <ul>
-          <li>JDK/JavaFX (multi-utilisateur)</li>
-          <li>PostgreSQL + pgAdmin</li>
-          <li>Bibliothèques QR/Barcode</li>
-          <li>Connecteur ODBC pour Excel</li>
-          <li>Serveur SMTP (emails automatiques)</li>
+          <li>Licences Microsoft Visual Studio 2015/2017/2019, PHPStorm, VSCode</li>
+          <li>Environnements de développement : Xampp/Wamp, Apache, MySQL, PostgreSQL</li>
+          <li>Frameworks et bibliothèques : Bootstrap, jQuery, JavaFX, bibliothèques QR/Barcode</li>
+          <li>Outils de transfert : FileZilla, CoreFTP</li>
+          <li>Interfaces de gestion : phpMyAdmin, pgAdmin</li>
+          <li>Connecteurs ODBC et serveurs SMTP</li>
         </ul>
       </div>
     </section>
 
     <section class="section">
-      <h2>4. Gestion des Utilisateurs</h2>
+      <h2>Gestion des Utilisateurs</h2>
       <div class="glpi-content">
-        <h3 style="color:#01ffc0;font-size:1.5rem;margin:2rem 0 1rem">SuperCar-Web</h3>
-        <p><strong>Profils dans GLPI :</strong></p>
+        <p><strong>Profils et droits configurés dans GLPI :</strong></p>
         <ul>
-          <li><strong>Chef de projet (rotation)</strong> : Vision globale, attribution tickets</li>
-          <li><strong>Développeurs web</strong> : Tickets HTML/CSS/PHP/MySQL</li>
-          <li><strong>Administrateur SuperCar</strong> : Tickets module admin, contenu dynamique</li>
-          <li><strong>Support technique</strong> : Incidents hébergement, serveur</li>
-          <li><strong>Vendeurs</strong> : Déclaration bugs fonctionnels (demandes d'essai)</li>
-        </ul>
-
-        <h3 style="color:#01ffc0;font-size:1.5rem;margin:2rem 0 1rem">VMS (VoucherManager)</h3>
-        <p><strong>Profils dans GLPI :</strong></p>
-        <ul>
-          <li><strong>Admin/Comptable siège</strong> : Tickets saisie demandes, facturation</li>
-          <li><strong>Approbateurs</strong> : Tickets workflow validation</li>
-          <li><strong>Développeurs JavaFX</strong> : Tickets techniques application</li>
-          <li><strong>Superviseurs magasin</strong> : Tickets rédemption, scan QR</li>
-          <li><strong>DBA PostgreSQL</strong> : Tickets base de données, procédures/triggers</li>
-          <li><strong>Support SSII</strong> : Coordination générale</li>
+          <li><strong>Chefs de projet</strong> : Vision globale, attribution des tickets, suivi des équipes</li>
+          <li><strong>Développeurs web</strong> : Tickets HTML/CSS/PHP/MySQL, bugs front-end et back-end</li>
+          <li><strong>Développeurs JavaFX</strong> : Tickets techniques application desktop</li>
+          <li><strong>Administrateurs système</strong> : Gestion modules admin, contenu dynamique, hébergement</li>
+          <li><strong>Comptables/Admin</strong> : Tickets de saisie demandes, facturation</li>
+          <li><strong>Approbateurs</strong> : Validation workflows</li>
+          <li><strong>Superviseurs terrain</strong> : Déclaration incidents rédemption, scan QR</li>
+          <li><strong>DBA</strong> : Tickets base de données, procédures stockées, triggers</li>
+          <li><strong>Support technique</strong> : Coordination générale, incidents serveurs</li>
         </ul>
       </div>
     </section>
 
     <section class="section">
-      <h2>5. Rapports & Statistiques</h2>
+      <h2>Rapports & Statistiques</h2>
       <div class="glpi-content">
-        <h3 style="color:#01ffc0;font-size:1.5rem;margin:2rem 0 1rem">SuperCar-Web</h3>
-        <p><strong>Indicateurs clés :</strong></p>
+        <p><strong>Indicateurs clés de performance suivis :</strong></p>
         <ul>
-          <li>Nombre de tickets par module (Galerie, Demande essai, Admin, Contact)</li>
-          <li>Temps de résolution moyen par type (bugs responsive vs. bugs backend)</li>
-          <li>Disponibilité de l'hébergement en ligne</li>
+          <li>Nombre de tickets par module et catégorie</li>
+          <li>Temps de résolution moyen par type (bugs responsive vs backend, incidents critiques vs améliorations)</li>
+          <li>Disponibilité des services (hébergement, serveurs centraux)</li>
           <li>Tickets bloquants pour mise en production</li>
-          <li>Rotation chefs de projet : tickets traités par équipe</li>
-        </ul>
-        <p><strong>Rapports périodiques :</strong> Bilan hebdomadaire des développements (avancement cahier des charges), suivi compatibilité multi-écrans (résolution 1024×768 minimum), conformité aux exigences (procédures stockées, triggers, design responsiveness).</p>
-
-        <h3 style="color:#01ffc0;font-size:1.5rem;margin:2rem 0 1rem">VMS (VoucherManager)</h3>
-        <p><strong>Indicateurs clés :</strong></p>
-        <ul>
-          <li>Tickets critiques bloquant émission/rédemption de bons</li>
-          <li>Performance de génération PDF (temps de traitement)</li>
-          <li>Incidents sur envois emails automatiques</li>
+          <li>Performance de génération PDF et envois emails</li>
           <li>Taux d'échec de validation QR en magasin</li>
-          <li>Disponibilité du serveur central (impact multi-sites)</li>
+          <li>Statistiques par équipe et par site (siège vs points de vente)</li>
         </ul>
-        <p><strong>Rapports périodiques :</strong> Audit trail (traçabilité des interventions techniques), suivi des SLA (délais d'émission, réactivité support), statistiques par site (siège vs. magasins), conformité sécurité (anti-fraude, unicité codes), rapports ODBC Excel (corrélation avec incidents techniques).</p>
+        <p><strong>Rapports produits :</strong></p>
+        <ul>
+          <li>Bilans hebdomadaires d'avancement des développements</li>
+          <li>Suivi de compatibilité multi-écrans et conformité technique</li>
+          <li>Audit trail complet pour traçabilité des interventions</li>
+          <li>Rapports SLA : délais d'émission, réactivité support</li>
+          <li>Conformité sécurité : anti-fraude, unicité des codes</li>
+          <li>Exports Excel via ODBC pour analyses complémentaires</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Méthodologies & Intégration</h2>
+      <div class="glpi-content">
+        <p>GLPI a été intégré aux méthodologies agiles utilisées tout au long de l'année :</p>
+        <ul>
+          <li>Synchronisation avec plannings <strong>Gantt/PERT</strong> pour suivi des jalons</li>
+          <li>Connexion avec tableaux <strong>Kanban/Trello</strong> pour gestion visuelle</li>
+          <li>Tableaux de bord unifiés pour vision globale des livraisons et incidents</li>
+          <li>Rotation des rôles de chef de projet : traçabilité des contributions de chaque équipe</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Compétences Développées</h2>
+      <div class="glpi-content">
+        <ul>
+          <li>Installation et configuration d'une solution ITSM professionnelle</li>
+          <li>Gestion multi-environnements (web et desktop, multi-sites)</li>
+          <li>Paramétrage avancé : catégories, SLA, workflows, escalades</li>
+          <li>Administration utilisateurs et gestion des droits</li>
+          <li>Création de rapports personnalisés et tableaux de bord</li>
+          <li>Intégration avec outils de développement (ODBC, exports)</li>
+          <li>Support technique et résolution d'incidents variés</li>
+          <li>Documentation technique et formation utilisateurs</li>
+        </ul>
       </div>
     </section>
   </main>
