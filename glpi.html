@@ -75,56 +75,144 @@
   <!-- Hero GLPI -->
   <header class="hero-glpi">
     <h1>GLPI</h1>
-    <p class="subtitle">Mise en place d’une solution de gestion de parc informatique et de ticketing d’entreprise</p>
+    <p class="subtitle">Départage GLPI pour les projets SuperCar-Web & VMS - Gestion de parc et ticketing adaptés aux contextes professionnels</p>
   </header>
 
   <main>
     <section class="section">
-      <h2>Contexte du projet</h2>
+      <h2>1. Installation & Configuration</h2>
       <div class="glpi-content">
-        <p>Dans le cadre de mon BTS SIO, j’ai déployé et configuré une instance complète de <strong>GLPI</strong> (Gestionnaire Libre de Parc Informatique) en environnement de production simulée.</p>
-        <p>Objectif : centraliser la gestion du matériel, des logiciels, des utilisateurs et des demandes d’assistance pour une entreprise fictive de 120 collaborateurs.</p>
-      </div>
-    </section>
-
-    <section class="section">
-      <h2>Fonctionnalités implémentées</h2>
-      <div class="glpi-content">
+        <h3 style="color:#01ffc0;font-size:1.5rem;margin:2rem 0 1rem">SuperCar-Web</h3>
         <ul>
-          <li>Inventory automatique du parc (via FusionInventory + OCS)</li>
-          <li>Gestion des actifs (ordinateurs, imprimantes, téléphones, licences)</li>
-          <li>Système de ticketing avec SLA et escalade</li>
-          <li>Gestion des utilisateurs et entités (multi-sociétés)</li>
-          <li>Base de connaissances et FAQ</li>
-          <li>Statistiques et rapports personnalisés</li>
-          <li>Plugin de réservation de matériel</li>
-          <li>Authentification LDAP/Active Directory simulée</li>
+          <li>Installation de GLPI sur serveur <strong>Ubuntu 12.04.2 LTS</strong> (virtualisé)</li>
+          <li>Configuration Apache/MySQL pour cohabitation avec l'application web PHP</li>
+          <li>Intégration avec l'infrastructure existante (4 entrepôts + siège social)</li>
+          <li>Paramétrage des catégories : Développement Web, Hébergement, Base de données, Administration du site</li>
+        </ul>
+
+        <h3 style="color:#01ffc0;font-size:1.5rem;margin:2rem 0 1rem">VMS (VoucherManager)</h3>
+        <ul>
+          <li>Déploiement GLPI sur serveur <strong>PostgreSQL centralisé</strong></li>
+          <li>Configuration multi-sites (siège + points de vente/magasins)</li>
+          <li>Mise en place de connexions ODBC pour reporting Excel</li>
+          <li>Catégories spécifiques : Application JavaFX (siège), Application magasin, Base de données, Génération/Envoi bons, Rédemption</li>
         </ul>
       </div>
     </section>
 
     <section class="section">
-      <h2>Captures d’écran</h2>
-      <div class="screenshots">
-        <div class="screenshot-card">
-          <img src="image/glpi-dashboard.jpg" alt="Tableau de bord GLPI" loading="lazy" onerror="this.src='https://via.placeholder.com/600x400/1e2a24/01ffc0?text=Dashboard+GLPI'">
-        </div>
-        <div class="screenshot-card">
-          <img src="image/glpi-ticket.jpg" alt="Création de ticket" loading="lazy" onerror="this.src='https://via.placeholder.com/600x400/1e2a24/01ffc0?text=Ticket+GLPI'">
-        </div>
-        <div class="screenshot-card">
-          <img src="image/glpi-inventaire.jpg" alt="Inventaire matériel" loading="lazy" onerror="this.src='https://via.placeholder.com/600x400/1e2a24/01ffc0?text=Inventaire'">
-        </div>
-        <div class="screenshot-card">
-          <img src="image/glpi-rapport.jpg" alt="Rapports et statistiques" loading="lazy" onerror="this.src='https://via.placeholder.com/600x400/1e2a24/01ffc0?text=Statistiques'">
-        </div>
+      <h2>2. Gestion des Tickets</h2>
+      <div class="glpi-content">
+        <h3 style="color:#01ffc0;font-size:1.5rem;margin:2rem 0 1rem">SuperCar-Web</h3>
+        <p><strong>Types de tickets courants :</strong></p>
+        <ul>
+          <li>Bugs sur le formulaire de demande d'essai</li>
+          <li>Problèmes d'affichage responsive (desktop/tablette/smartphone)</li>
+          <li>Erreurs dans le module d'administration</li>
+          <li>Dysfonctionnements de la galerie avec pagination</li>
+          <li>Incidents sur l'hébergement distant</li>
+        </ul>
+        <p><strong>Workflow :</strong> Utilisateurs : Admin site, Équipe développement MultiSys, Vendeurs (salesmen). Priorités selon impact sur visibilité web et génération de leads.</p>
+
+        <h3 style="color:#01ffc0;font-size:1.5rem;margin:2rem 0 1rem">VMS (VoucherManager)</h3>
+        <p><strong>Types de tickets courants :</strong></p>
+        <ul>
+          <li>Échec de génération de bons PDF (QR/Code-barres)</li>
+          <li>Problèmes d'envoi email automatique</li>
+          <li>Erreurs de validation lors de la rédemption en magasin</li>
+          <li>Bugs dans le processus paiement/approbation</li>
+          <li>Incidents de scan QR en point de vente</li>
+        </ul>
+        <p><strong>Workflow :</strong> Utilisateurs : Admin/Comptable (siège), Approbateurs, Superviseurs magasin, Équipe SSII. Priorités critiques pour les blocages de rédemption (impact direct sur clients).</p>
       </div>
     </section>
 
     <section class="section">
-      <h2>Technologies utilisées</h2>
+      <h2>3. Gestion de Parc</h2>
       <div class="glpi-content">
-        <p><strong>GLPI 10.0.15</strong> • Apache • MySQL • PHP 8.2 • FusionInventory • OCS Inventory • Linux Debian</p>
+        <h3 style="color:#01ffc0;font-size:1.5rem;margin:2rem 0 1rem">SuperCar-Web</h3>
+        <p><strong>Inventaire matériel :</strong></p>
+        <ul>
+          <li>Serveur physique (Intel Core i5, 8GB RAM, 1TB HDD)</li>
+          <li>Postes de travail développeurs (équipes MultiSys)</li>
+          <li>Smartphones pour vendeurs (accès mobile au site)</li>
+        </ul>
+        <p><strong>Inventaire logiciel :</strong></p>
+        <ul>
+          <li>Licences : Visual Studio 2015/2017/2019, PHPStorm</li>
+          <li>Serveurs : Xampp/Wamp, Apache, MySQL</li>
+          <li>Frameworks : Bootstrap, jQuery</li>
+          <li>Outils : FileZilla, phpMyAdmin</li>
+        </ul>
+
+        <h3 style="color:#01ffc0;font-size:1.5rem;margin:2rem 0 1rem">VMS (VoucherManager)</h3>
+        <p><strong>Inventaire matériel :</strong></p>
+        <ul>
+          <li>Serveur PostgreSQL centralisé</li>
+          <li>Postes siège (application JavaFX complète)</li>
+          <li>Postes magasins (application légère + scanners QR)</li>
+        </ul>
+        <p><strong>Inventaire logiciel :</strong></p>
+        <ul>
+          <li>JDK/JavaFX (multi-utilisateur)</li>
+          <li>PostgreSQL + pgAdmin</li>
+          <li>Bibliothèques QR/Barcode</li>
+          <li>Connecteur ODBC pour Excel</li>
+          <li>Serveur SMTP (emails automatiques)</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>4. Gestion des Utilisateurs</h2>
+      <div class="glpi-content">
+        <h3 style="color:#01ffc0;font-size:1.5rem;margin:2rem 0 1rem">SuperCar-Web</h3>
+        <p><strong>Profils dans GLPI :</strong></p>
+        <ul>
+          <li><strong>Chef de projet (rotation)</strong> : Vision globale, attribution tickets</li>
+          <li><strong>Développeurs web</strong> : Tickets HTML/CSS/PHP/MySQL</li>
+          <li><strong>Administrateur SuperCar</strong> : Tickets module admin, contenu dynamique</li>
+          <li><strong>Support technique</strong> : Incidents hébergement, serveur</li>
+          <li><strong>Vendeurs</strong> : Déclaration bugs fonctionnels (demandes d'essai)</li>
+        </ul>
+
+        <h3 style="color:#01ffc0;font-size:1.5rem;margin:2rem 0 1rem">VMS (VoucherManager)</h3>
+        <p><strong>Profils dans GLPI :</strong></p>
+        <ul>
+          <li><strong>Admin/Comptable siège</strong> : Tickets saisie demandes, facturation</li>
+          <li><strong>Approbateurs</strong> : Tickets workflow validation</li>
+          <li><strong>Développeurs JavaFX</strong> : Tickets techniques application</li>
+          <li><strong>Superviseurs magasin</strong> : Tickets rédemption, scan QR</li>
+          <li><strong>DBA PostgreSQL</strong> : Tickets base de données, procédures/triggers</li>
+          <li><strong>Support SSII</strong> : Coordination générale</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>5. Rapports & Statistiques</h2>
+      <div class="glpi-content">
+        <h3 style="color:#01ffc0;font-size:1.5rem;margin:2rem 0 1rem">SuperCar-Web</h3>
+        <p><strong>Indicateurs clés :</strong></p>
+        <ul>
+          <li>Nombre de tickets par module (Galerie, Demande essai, Admin, Contact)</li>
+          <li>Temps de résolution moyen par type (bugs responsive vs. bugs backend)</li>
+          <li>Disponibilité de l'hébergement en ligne</li>
+          <li>Tickets bloquants pour mise en production</li>
+          <li>Rotation chefs de projet : tickets traités par équipe</li>
+        </ul>
+        <p><strong>Rapports périodiques :</strong> Bilan hebdomadaire des développements (avancement cahier des charges), suivi compatibilité multi-écrans (résolution 1024×768 minimum), conformité aux exigences (procédures stockées, triggers, design responsiveness).</p>
+
+        <h3 style="color:#01ffc0;font-size:1.5rem;margin:2rem 0 1rem">VMS (VoucherManager)</h3>
+        <p><strong>Indicateurs clés :</strong></p>
+        <ul>
+          <li>Tickets critiques bloquant émission/rédemption de bons</li>
+          <li>Performance de génération PDF (temps de traitement)</li>
+          <li>Incidents sur envois emails automatiques</li>
+          <li>Taux d'échec de validation QR en magasin</li>
+          <li>Disponibilité du serveur central (impact multi-sites)</li>
+        </ul>
+        <p><strong>Rapports périodiques :</strong> Audit trail (traçabilité des interventions techniques), suivi des SLA (délais d'émission, réactivité support), statistiques par site (siège vs. magasins), conformité sécurité (anti-fraude, unicité codes), rapports ODBC Excel (corrélation avec incidents techniques).</p>
       </div>
     </section>
   </main>
