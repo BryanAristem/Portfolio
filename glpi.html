@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GLPI - Gestion de Parc & Tickets - Emma Dubois</title>
+  <title>GLPI - Étude & Réflexion - Emma Dubois</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Fira+Mono:wght@400;700&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
@@ -11,8 +11,8 @@
   <style>
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
     body{font-family:'Inter',sans-serif;background:#0a0f0d;color:#e0e0e0;overflow-x:hidden;line-height:1.7}
-    
-    /* Navigation (identique à toutes les pages) */
+
+    /* Navigation */
     .nav{background:rgba(0,0,0,.95);backdrop-filter:blur(10px);padding:1.2rem 2rem;position:fixed;top:0;width:100%;z-index:1000;display:flex;justify-content:center;border-bottom:1px solid rgba(1,255,192,.2);box-shadow:0 4px 20px rgba(0,0,0,.3)}
     .nav ul{list-style:none;display:flex;gap:2rem;align-items:center}
     .nav a{color:#e0e0e0;text-decoration:none;font-family:'Fira Mono',monospace;font-weight:700;text-transform:uppercase;font-size:.85rem;transition:all .3s;position:relative;padding:.5rem 0}
@@ -21,15 +21,25 @@
     .nav a:hover::after{width:100%}
     .hamburger{display:none;cursor:pointer;font-size:1.6rem;color:#e0e0e0}
 
-    /* Hero GLPI */
+    /* Hero */
     .hero-glpi{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:8rem 2rem 4rem;text-align:center;position:relative}
     .hero-glpi::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:radial-gradient(circle at 30% 70%,rgba(1,255,192,.12),transparent 60%);opacity:.6;pointer-events:none}
     .hero-glpi h1{font-size:5.5rem;font-weight:900;line-height:1;background:linear-gradient(135deg,#fff,#01ffc0);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:1rem}
     .hero-glpi .subtitle{font-size:1.3rem;color:#aaa;max-width:800px;margin:0 auto 3rem}
 
-    /* Contenu principal */
+    /* Badge honnêteté */
+    .badge-reflexion{
+      display:inline-flex;align-items:center;gap:.6rem;
+      background:rgba(1,255,192,.1);border:1px solid rgba(1,255,192,.4);
+      color:#01ffc0;font-family:'Fira Mono',monospace;font-size:.85rem;font-weight:700;
+      padding:.6rem 1.4rem;border-radius:50px;margin-bottom:2.5rem;
+      text-transform:uppercase;letter-spacing:1px;
+    }
+    .badge-reflexion::before{content:'💡'}
+
+    /* Sections */
     .section{padding:5rem 2rem;display:flex;flex-direction:column;align-items:center}
-    .section h2{font-size:3rem;font-weight:900;color:#01ffc0;margin-bottom:3rem;text-transform:uppercase;letter-spacing:2px;position:relative}
+    .section h2{font-size:3rem;font-weight:900;color:#01ffc0;margin-bottom:3rem;text-transform:uppercase;letter-spacing:2px;position:relative;text-align:center}
     .section h2::after{content:'';position:absolute;bottom:-12px;left:50%;transform:translateX(-50%);width:80px;height:4px;background:#01ffc0;border-radius:2px}
 
     .glpi-content{max-width:1000px;width:100%;background:rgba(30,42,36,.7);padding:3rem;border-radius:16px;border:1px solid rgba(1,255,192,.2);margin:2rem 0;line-height:2;font-size:1.1rem}
@@ -37,10 +47,44 @@
     .glpi-content ul{margin:1.5rem 0;padding-left:2rem}
     .glpi-content li{margin:.6rem 0}
 
-    .screenshots{margin:4rem 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem}
-    .screenshot-card{background:rgba(20,30,25,.9);border:1px solid rgba(1,255,192,.2);border-radius:12px;overflow:hidden;transition:all .4s}
-    .screenshot-card:hover{transform:translateY(-10px);border-color:#01ffc0;box-shadow:0 15px 40px rgba(1,255,192,.2)}
-    .screenshot-card img{width:100%;height:auto;display:block;border-bottom:3px solid #01ffc0}
+    /* Bloc citation / phrase clé */
+    .phrase-cle{
+      max-width:1000px;width:100%;
+      background:rgba(1,255,192,.06);
+      border-left:5px solid #01ffc0;
+      border-radius:0 12px 12px 0;
+      padding:2rem 2.5rem;
+      margin:2rem 0;
+      font-size:1.15rem;
+      font-style:italic;
+      color:#c8fff0;
+      line-height:1.9;
+    }
+    .phrase-cle strong{color:#01ffc0;font-style:normal}
+
+    /* Bloc réponse jury */
+    .jury-block{
+      max-width:1000px;width:100%;
+      background:rgba(255,180,0,.06);
+      border:1px solid rgba(255,180,0,.3);
+      border-radius:12px;
+      padding:2rem 2.5rem;
+      margin:2rem 0;
+    }
+    .jury-block .jury-label{
+      font-family:'Fira Mono',monospace;font-size:.8rem;font-weight:700;
+      color:#ffb400;text-transform:uppercase;letter-spacing:2px;margin-bottom:1rem;
+    }
+    .jury-block p{color:#f0e0c0;line-height:1.9}
+    .jury-block strong{color:#ffb400}
+
+    /* Cards 3 colonnes */
+    .cards-grid{max-width:1000px;width:100%;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin:2rem 0}
+    .card{background:rgba(20,30,25,.9);border:1px solid rgba(1,255,192,.15);border-radius:12px;padding:2rem;transition:all .3s}
+    .card:hover{border-color:#01ffc0;transform:translateY(-6px);box-shadow:0 12px 30px rgba(1,255,192,.15)}
+    .card .card-icon{font-size:2rem;margin-bottom:1rem}
+    .card h3{color:#01ffc0;font-size:1.1rem;font-weight:700;margin-bottom:.8rem;text-transform:uppercase;letter-spacing:1px}
+    .card p{color:#ccc;font-size:.95rem;line-height:1.7}
 
     /* Footer */
     footer{background:#000;padding:3rem 2rem;display:flex;flex-wrap:wrap;justify-content:center;gap:3rem;color:#aaa;font-size:.9rem;border-top:2px solid rgba(1,255,192,.3);text-align:center}
@@ -52,7 +96,7 @@
       .hamburger{display:block}
       .nav ul{display:none;flex-direction:column;position:absolute;top:60px;left:0;width:100%;background:rgba(0,0,0,.98);padding:2rem;gap:1rem}
       .nav ul.active{display:flex}
-      .screenshots{grid-template-columns:1fr}
+      .cards-grid{grid-template-columns:1fr}
     }
   </style>
 </head>
@@ -62,7 +106,7 @@
   <nav class="nav">
     <div class="hamburger">☰</div>
     <ul>
-        <li><a href="index.html">Accueil</a></li>
+      <li><a href="index.html">Accueil</a></li>
       <li><a href="Pro.html">Profil</a></li>
       <li><a href="Projet.html">Projets</a></li>
       <li><a href="Veille Tech.html">V.Tech</a></li>
@@ -71,148 +115,168 @@
     </ul>
   </nav>
 
-  <!-- Hero GLPI -->
-   <header class="hero-glpi">
+  <!-- Hero -->
+  <header class="hero-glpi">
+    <div class="badge-reflexion">Étude & Réflexion Professionnelle</div>
     <h1>GLPI</h1>
-    <p class="subtitle">Mise en place d'une solution complète de gestion de parc informatique et de ticketing adaptée aux contextes professionnels</p>
+    <p class="subtitle">Analyse de l'outil GLPI dans le cadre de mon projet SuperCar — une réflexion sur la gestion des demandes et le ticketing en contexte professionnel</p>
   </header>
 
   <main>
+
+    <!-- Contexte -->
     <section class="section">
-      <h2>Contexte & Objectifs</h2>
+      <h2>Contexte & Objectif</h2>
       <div class="glpi-content">
-        <p>Durant mon année de formation BTS SIO, j'ai déployé et configuré <strong>GLPI</strong> (Gestionnaire Libre de Parc Informatique) pour assurer le suivi et la maintenance de deux environnements professionnels distincts développés en parallèle.</p>
-        <p>L'objectif était de centraliser la gestion des équipements, des logiciels, des utilisateurs et des incidents techniques pour garantir un support efficace et une traçabilité complète des interventions.</p>
+        <p>Dans le cadre de mon projet <strong>SuperCar</strong> (BTS SIO), j'ai été confronté à une problématique concrète : <strong>comment organiser et suivre les demandes d'essai de véhicules</strong> de manière structurée et professionnelle ?</p>
+        <p>Cette réflexion m'a amené à étudier <strong>GLPI</strong> (Gestionnaire Libre de Parc Informatique), un outil ITSM open source largement utilisé en entreprise, afin d'évaluer sa pertinence pour répondre à ce besoin.</p>
+        <p><em>Je n'ai pas directement déployé GLPI dans mon projet, mais j'ai étudié son fonctionnement et son intérêt dans un contexte professionnel, ce qui m'a permis de comprendre les enjeux réels d'un système de ticketing.</em></p>
+      </div>
+
+      <div class="phrase-cle">
+        <strong>Ma démarche :</strong> « Je n'ai pas implémenté GLPI, mais j'ai étudié son fonctionnement et son intérêt dans un contexte professionnel. Cette analyse m'a permis d'identifier comment un tel outil pourrait améliorer concrètement la gestion de mon projet SuperCar. »
       </div>
     </section>
 
+    <!-- Problème identifié -->
     <section class="section">
-      <h2>Installation & Configuration</h2>
+      <h2>Problème Identifié</h2>
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-icon">📋</div>
+          <h3>Demandes non centralisées</h3>
+          <p>Sans outil dédié, les demandes d'essai de véhicules étaient difficiles à suivre : aucune traçabilité, risque d'oubli ou de doublon.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🔧</div>
+          <h3>Incidents sans suivi</h3>
+          <p>Les problèmes techniques (bugs, erreurs d'affichage, formulaires défaillants) n'avaient pas de cycle de vie formalisé avec priorité et délai de résolution.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">👥</div>
+          <h3>Collaboration peu structurée</h3>
+          <p>Sans système de ticketing, la répartition des tâches entre les membres du projet manquait de clarté et de visibilité globale.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Solution proposée -->
+    <section class="section">
+      <h2>Solution Proposée : GLPI</h2>
       <div class="glpi-content">
-        <p>Mise en place de l'infrastructure GLPI sur deux environnements techniques :</p>
+        <p>Après avoir étudié GLPI, j'ai identifié comment cet outil aurait pu répondre aux besoins de mon projet :</p>
         <ul>
-          <li>Déploiement sur serveur <strong>Ubuntu 12.04.2 LTS virtualisé</strong> avec Apache/MySQL pour l'application web</li>
-          <li>Configuration sur serveur <strong>PostgreSQL centralisé</strong> pour l'application desktop multi-sites</li>
-          <li>Intégration avec infrastructures existantes (multi-entrepôts, siège social, points de vente)</li>
-          <li>Paramétrage des catégories personnalisées selon les besoins : développement web, base de données, hébergement, applications JavaFX, génération PDF, rédemption</li>
-          <li>Mise en place de connexions ODBC pour reporting Excel automatisé</li>
+          <li><strong>Centralisation des demandes :</strong> chaque demande d'essai de véhicule deviendrait un <strong>ticket</strong> avec un numéro unique, un statut et un historique</li>
+          <li><strong>Gestion des incidents :</strong> tout problème technique (bug sur le site, formulaire cassé) serait tracé avec une <strong>priorité</strong> (critique / haute / normale) et un délai de résolution</li>
+          <li><strong>Attribution des responsabilités :</strong> chaque ticket serait assigné à la bonne personne selon son profil (développeur, admin, support)</li>
+          <li><strong>Suivi des SLA :</strong> des délais de traitement seraient définis et respectés grâce aux alertes automatiques</li>
+          <li><strong>Rapports et statistiques :</strong> tableaux de bord pour suivre l'avancement, le taux de résolution et les délais</li>
+        </ul>
+      </div>
+
+      <!-- Lien avec le projet SuperCar -->
+      <div class="phrase-cle">
+        <strong>Lien direct avec SuperCar :</strong><br>
+        Une <strong>demande d'essai de véhicule</strong> = un ticket client à traiter<br>
+        Un <strong>problème technique sur le site</strong> = un incident à résoudre avec priorité<br>
+        Un <strong>retour utilisateur</strong> = une demande d'amélioration à planifier
+      </div>
+    </section>
+
+    <!-- Ce que j'ai appris -->
+    <section class="section">
+      <h2>Ce Que J'ai Appris</h2>
+      <div class="glpi-content">
+        <p><strong>En étudiant GLPI, j'ai compris les principes fondamentaux d'un système ITSM :</strong></p>
+        <ul>
+          <li>La différence entre un <strong>incident</strong> (quelque chose qui ne fonctionne pas) et une <strong>demande</strong> (un besoin exprimé)</li>
+          <li>L'importance des <strong>niveaux de priorité</strong> pour ne pas traiter tous les problèmes avec la même urgence</li>
+          <li>Le concept de <strong>SLA (Service Level Agreement)</strong> et pourquoi les délais de traitement sont essentiels en entreprise</li>
+          <li>Comment les <strong>profils et droits utilisateurs</strong> permettent de sécuriser et organiser l'accès à l'information</li>
+          <li>L'utilité des <strong>rapports</strong> pour piloter la qualité du support et l'avancement des projets</li>
+          <li>Pourquoi la <strong>traçabilité</strong> est une exigence non négociable dans un contexte professionnel</li>
+        </ul>
+      </div>
+
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-icon">📊</div>
+          <h3>Vision ITSM</h3>
+          <p>Comprendre comment les entreprises structurent leur support informatique avec des outils comme GLPI, ServiceNow ou Jira Service Management.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🎯</div>
+          <h3>Analyse des besoins</h3>
+          <p>Savoir identifier les besoins d'un projet et proposer une solution outillée adaptée, même quand elle n'est pas encore implémentée.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🚀</div>
+          <h3>Perspective d'amélioration</h3>
+          <p>Penser comme un professionnel : anticiper ce qui manque, proposer des évolutions concrètes et justifier ses choix techniques.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pourquoi pas implémenté -->
+    <section class="section">
+      <h2>Pourquoi Pas Implémenté ?</h2>
+
+      <div class="jury-block">
+        <div class="jury-label">⚠️ Question possible du jury</div>
+        <p><strong>« Pourquoi n'avez-vous pas mis en place GLPI dans votre projet ? »</strong></p>
+      </div>
+
+      <div class="phrase-cle">
+        <strong>Ma réponse :</strong> « Par contrainte de temps, j'ai priorisé le développement du site SuperCar lui-même. Cependant, l'étude de GLPI m'a permis de comprendre qu'un tel outil serait une amélioration pertinente pour la version suivante du projet. C'est une évolution que je proposerais si le projet était déployé en contexte réel. »
+      </div>
+
+      <div class="glpi-content">
+        <p><strong>Ce choix est justifiable et cohérent :</strong></p>
+        <ul>
+          <li>En projet réel, on <strong>priorise</strong> toujours les fonctionnalités métier avant les outils de gestion interne</li>
+          <li>Proposer une amélioration post-livraison montre une <strong>vision long terme</strong></li>
+          <li>Connaître l'outil sans l'avoir implémenté prouve une <strong>capacité d'analyse</strong> et de veille technologique</li>
         </ul>
       </div>
     </section>
 
-    <section class="section">
-      <h2>Gestion des Tickets</h2>
-      <div class="glpi-content">
-        <p><strong>Types d'incidents traités :</strong></p>
-        <ul>
-          <li>Bugs sur formulaires web et modules d'administration</li>
-          <li>Problèmes d'affichage responsive (desktop, tablette, smartphone)</li>
-          <li>Erreurs de génération PDF et codes QR/barres</li>
-          <li>Dysfonctionnements de pagination et galeries dynamiques</li>
-          <li>Incidents d'envoi emails automatiques</li>
-          <li>Erreurs de validation lors de scans QR en point de vente</li>
-          <li>Bugs dans workflows d'approbation et paiement</li>
-          <li>Problèmes d'hébergement et disponibilité serveurs</li>
-        </ul>
-        <p><strong>Workflow mis en place :</strong> Classification par priorité selon l'impact (critique pour blocages utilisateurs finaux, haute pour bugs affectant la visibilité, normale pour améliorations), attribution automatique selon les profils et compétences, suivi des SLA avec escalade si nécessaire.</p>
-      </div>
-    </section>
-
-    <section class="section">
-      <h2>Gestion de Parc</h2>
-      <div class="glpi-content">
-        <p><strong>Inventaire matériel :</strong></p>
-        <ul>
-          <li>Serveurs physiques (Intel Core i5, 8GB RAM, 1TB HDD)</li>
-          <li>Serveurs PostgreSQL et MySQL centralisés</li>
-          <li>Postes de travail développeurs et administrateurs</li>
-          <li>Postes légers en points de vente</li>
-          <li>Smartphones pour accès mobile terrain</li>
-          <li>Scanners QR/codes-barres</li>
-        </ul>
-        <p><strong>Inventaire logiciel :</strong></p>
-        <ul>
-          <li>Licences Microsoft Visual Studio 2015/2017/2019, PHPStorm, VSCode</li>
-          <li>Environnements de développement : Xampp/Wamp, Apache, MySQL, PostgreSQL</li>
-          <li>Frameworks et bibliothèques : Bootstrap, jQuery, JavaFX, bibliothèques QR/Barcode</li>
-          <li>Outils de transfert : FileZilla, CoreFTP</li>
-          <li>Interfaces de gestion : phpMyAdmin, pgAdmin</li>
-          <li>Connecteurs ODBC et serveurs SMTP</li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="section">
-      <h2>Gestion des Utilisateurs</h2>
-      <div class="glpi-content">
-        <p><strong>Profils et droits configurés dans GLPI :</strong></p>
-        <ul>
-          <li><strong>Chefs de projet</strong> : Vision globale, attribution des tickets, suivi des équipes</li>
-          <li><strong>Développeurs web</strong> : Tickets HTML/CSS/PHP/MySQL, bugs front-end et back-end</li>
-          <li><strong>Développeurs JavaFX</strong> : Tickets techniques application desktop</li>
-          <li><strong>Administrateurs système</strong> : Gestion modules admin, contenu dynamique, hébergement</li>
-          <li><strong>Comptables/Admin</strong> : Tickets de saisie demandes, facturation</li>
-          <li><strong>Approbateurs</strong> : Validation workflows</li>
-          <li><strong>Superviseurs terrain</strong> : Déclaration incidents rédemption, scan QR</li>
-          <li><strong>DBA</strong> : Tickets base de données, procédures stockées, triggers</li>
-          <li><strong>Support technique</strong> : Coordination générale, incidents serveurs</li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="section">
-      <h2>Rapports & Statistiques</h2>
-      <div class="glpi-content">
-        <p><strong>Indicateurs clés de performance suivis :</strong></p>
-        <ul>
-          <li>Nombre de tickets par module et catégorie</li>
-          <li>Temps de résolution moyen par type (bugs responsive vs backend, incidents critiques vs améliorations)</li>
-          <li>Disponibilité des services (hébergement, serveurs centraux)</li>
-          <li>Tickets bloquants pour mise en production</li>
-          <li>Performance de génération PDF et envois emails</li>
-          <li>Taux d'échec de validation QR en magasin</li>
-          <li>Statistiques par équipe et par site (siège vs points de vente)</li>
-        </ul>
-        <p><strong>Rapports produits :</strong></p>
-        <ul>
-          <li>Bilans hebdomadaires d'avancement des développements</li>
-          <li>Suivi de compatibilité multi-écrans et conformité technique</li>
-          <li>Audit trail complet pour traçabilité des interventions</li>
-          <li>Rapports SLA : délais d'émission, réactivité support</li>
-          <li>Conformité sécurité : anti-fraude, unicité des codes</li>
-          <li>Exports Excel via ODBC pour analyses complémentaires</li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="section">
-      <h2>Méthodologies & Intégration</h2>
-      <div class="glpi-content">
-        <p>GLPI a été intégré aux méthodologies agiles utilisées tout au long de l'année :</p>
-        <ul>
-          <li>Synchronisation avec plannings <strong>Gantt/PERT</strong> pour suivi des jalons</li>
-          <li>Connexion avec tableaux <strong>Kanban/Trello</strong> pour gestion visuelle</li>
-          <li>Tableaux de bord unifiés pour vision globale des livraisons et incidents</li>
-          <li>Rotation des rôles de chef de projet : traçabilité des contributions de chaque équipe</li>
-        </ul>
-      </div>
-    </section>
-
+    <!-- Compétences développées -->
     <section class="section">
       <h2>Compétences Développées</h2>
-      <div class="glpi-content">
-        <ul>
-          <li>Installation et configuration d'une solution ITSM professionnelle</li>
-          <li>Gestion multi-environnements (web et desktop, multi-sites)</li>
-          <li>Paramétrage avancé : catégories, SLA, workflows, escalades</li>
-          <li>Administration utilisateurs et gestion des droits</li>
-          <li>Création de rapports personnalisés et tableaux de bord</li>
-          <li>Intégration avec outils de développement (ODBC, exports)</li>
-          <li>Support technique et résolution d'incidents variés</li>
-          <li>Documentation technique et formation utilisateurs</li>
-        </ul>
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-icon">🔍</div>
+          <h3>Analyse critique</h3>
+          <p>Évaluer un outil par rapport à un besoin réel, identifier ses avantages et ses conditions d'utilisation optimales.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">💼</div>
+          <h3>Réflexion professionnelle</h3>
+          <p>Penser au-delà du code : organisation, support, traçabilité, qualité de service — des dimensions clés en entreprise.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">📝</div>
+          <h3>Proposition d'amélioration</h3>
+          <p>Savoir formuler une recommandation technique argumentée, même sans l'avoir mise en œuvre soi-même.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🧩</div>
+          <h3>Concepts ITSM</h3>
+          <p>Maîtrise des notions de ticketing, SLA, gestion de parc, profils utilisateurs et reporting.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">⚖️</div>
+          <h3>Gestion des priorités</h3>
+          <p>Comprendre comment hiérarchiser les tâches en fonction de l'impact et des ressources disponibles.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🔄</div>
+          <h3>Vision d'évolution</h3>
+          <p>Anticiper les besoins futurs d'un projet et planifier les améliorations à apporter après la livraison initiale.</p>
+        </div>
       </div>
     </section>
+
   </main>
 
   <!-- Footer -->
@@ -237,13 +301,14 @@
     requestAnimationFrame(raf);
 
     // GSAP animations
-    gsap.from('.hero-glpi h1', {opacity:0, y:50, duration:1.2, ease:'power3.out'});
-    gsap.from('.hero-glpi .subtitle', {opacity:0, y:40, duration:1, delay:0.6});
+    gsap.from('.hero-glpi .badge-reflexion', {opacity:0, y:30, duration:0.8, ease:'power3.out'});
+    gsap.from('.hero-glpi h1', {opacity:0, y:50, duration:1.2, delay:0.3, ease:'power3.out'});
+    gsap.from('.hero-glpi .subtitle', {opacity:0, y:40, duration:1, delay:0.7});
 
-    gsap.utils.toArray('.glpi-content, .screenshot-card').forEach((el, i) => {
+    gsap.utils.toArray('.glpi-content, .card, .phrase-cle, .jury-block').forEach((el, i) => {
       gsap.from(el, {
-        opacity:0, y:60, duration:0.8, delay:i*0.15,
-        scrollTrigger: {trigger: el, start: 'top 80%'}
+        opacity:0, y:60, duration:0.8, delay:i*0.1,
+        scrollTrigger: {trigger: el, start: 'top 82%'}
       });
     });
 
