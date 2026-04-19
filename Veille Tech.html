@@ -11,184 +11,76 @@
   <style>
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
     body{font-family:'Inter',sans-serif;background:#0a0f0d;color:#e0e0e0;overflow-x:hidden;line-height:1.7}
-    
-    /* Navigation */
+
+    /* ── Navigation ── */
     .nav{background:rgba(0,0,0,.95);backdrop-filter:blur(10px);padding:1.2rem 2rem;position:fixed;top:0;width:100%;z-index:1000;display:flex;justify-content:center;border-bottom:1px solid rgba(1,255,192,.2);box-shadow:0 4px 20px rgba(0,0,0,.3)}
     .nav ul{list-style:none;display:flex;gap:2rem;align-items:center}
     .nav a{color:#e0e0e0;text-decoration:none;font-family:'Fira Mono',monospace;font-weight:700;text-transform:uppercase;font-size:.85rem;transition:all .3s;position:relative;padding:.5rem 0}
     .nav a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:#01ffc0;transition:width .3s}
-    .nav a:hover{color:#01ffc0}
-    .nav a:hover::after{width:100%}
+    .nav a:hover,.nav a.active{color:#01ffc0}
+    .nav a:hover::after,.nav a.active::after{width:100%}
     .hamburger{display:none;cursor:pointer;font-size:1.6rem;color:#e0e0e0}
-    
-    /* Hero Section */
-    .hero{min-height:65vh;display:flex;align-items:center;justify-content:center;padding:8rem 3rem 4rem;position:relative;text-align:center}
-    .hero::before{content:'';position:absolute;top:20%;left:50%;transform:translateX(-50%);width:500px;height:500px;background:radial-gradient(circle,rgba(1,255,192,.15),transparent);border-radius:50%;z-index:0;pointer-events:none}
-    .hero-content{z-index:1;max-width:900px}
-    .hero h1{font-size:5rem;font-weight:900;color:#fff;line-height:.9;letter-spacing:-5px;margin-bottom:1.5rem;background:linear-gradient(135deg,#fff,#01ffc0);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-    .badge{font-family:'Fira Mono',monospace;color:#01ffc0;font-size:.95rem;margin-bottom:.5rem;text-transform:uppercase;letter-spacing:2px;font-weight:700}
-    .hero-subtitle{font-size:1.2rem;color:#aaa;margin-bottom:1.5rem;font-weight:600;line-height:1.6}
-    .theme-badge{
-      display:inline-block;
-      background:linear-gradient(135deg,rgba(1,255,192,.15),rgba(1,255,192,.05));
-      border:2px solid rgba(1,255,192,.3);
-      padding:1rem 2rem;
-      border-radius:12px;
-      margin-top:1.5rem;
-      font-size:1.05rem;
-      color:#01ffc0;
-      font-weight:700;
-    }
 
-    /* Section */
-    .section{padding:4rem 2rem 5rem;display:flex;flex-direction:column;align-items:center;position:relative}
+    /* ── Hero ── */
+    .hero{min-height:60vh;display:flex;align-items:center;justify-content:center;padding:8rem 2rem 4rem;text-align:center;position:relative;overflow:hidden}
+    .hero::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(1,255,192,.08),transparent 65%);border-radius:50%;pointer-events:none}
+    .badge{font-family:'Fira Mono',monospace;color:#01ffc0;font-size:.85rem;margin-bottom:.8rem;text-transform:uppercase;letter-spacing:3px;font-weight:700;opacity:.8}
+    .hero h1{font-size:4.5rem;font-weight:900;line-height:.95;letter-spacing:-4px;margin-bottom:1.5rem;background:linear-gradient(135deg,#fff,#01ffc0);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .hero-sub{color:#888;font-size:1rem;max-width:440px;margin:0 auto 2rem;line-height:1.8}
+    .live-badge{display:inline-flex;align-items:center;gap:.6rem;font-family:'Fira Mono',monospace;font-size:.72rem;color:#888;border:1px solid rgba(1,255,192,.2);border-radius:30px;padding:.4rem 1rem}
+    .dot-live{width:7px;height:7px;border-radius:50%;background:#01ffc0;animation:pulse-dot 2s infinite;flex-shrink:0}
+    @keyframes pulse-dot{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(1,255,192,.4)}50%{opacity:.6;box-shadow:0 0 0 6px rgba(1,255,192,0)}}
+
+    /* ── Sources section ── */
+    .section{padding:4rem 2rem;display:flex;flex-direction:column;align-items:center;position:relative}
     .section::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:80%;height:1px;background:linear-gradient(90deg,transparent,rgba(1,255,192,.3),transparent)}
+    h2{font-size:2.5rem;font-weight:900;color:#01ffc0;margin-bottom:3rem;text-align:center;text-transform:uppercase;letter-spacing:2px;position:relative;display:inline-block}
+    h2::after{content:'';position:absolute;bottom:-10px;left:50%;transform:translateX(-50%);width:60%;height:4px;background:#01ffc0;border-radius:2px}
 
-    .veille-grid{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:2.5rem;
-      max-width:1300px;
-      width:100%;
-      margin:0 auto;
-      padding:0 1rem;
-    }
+    /* ── Cards grid (same as index veille-grid) ── */
+    .veille-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;max-width:960px;width:100%;margin-bottom:3rem}
+    .veille-card{background:rgba(10,20,15,.7);border:1px solid rgba(1,255,192,.15);border-radius:14px;padding:1.6rem 1.4rem;position:relative;overflow:hidden;transition:all .35s;display:flex;flex-direction:column}
+    .veille-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(1,255,192,.06),transparent);opacity:0;transition:opacity .35s}
+    .veille-card:hover{transform:translateY(-6px);border-color:rgba(1,255,192,.5);box-shadow:0 16px 40px rgba(1,255,192,.15)}
+    .veille-card:hover::before{opacity:1}
+    .veille-icon{width:44px;height:44px;border-radius:10px;background:rgba(1,255,192,.1);border:1px solid rgba(1,255,192,.25);display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:1.1rem;flex-shrink:0}
+    .veille-source{font-family:'Fira Mono',monospace;font-size:.7rem;color:#01ffc0;text-transform:uppercase;letter-spacing:2px;margin-bottom:.4rem;opacity:.8}
+    .veille-card-title{font-size:1rem;font-weight:700;color:#fff;margin-bottom:.6rem}
+    .veille-card-desc{font-size:.85rem;color:#888;line-height:1.7;flex:1}
+    .veille-tag{display:inline-block;margin-top:.9rem;font-family:'Fira Mono',monospace;font-size:.68rem;background:rgba(1,255,192,.08);border:1px solid rgba(1,255,192,.2);color:#01ffc0;padding:.25rem .65rem;border-radius:20px;text-transform:uppercase;letter-spacing:1px}
 
-    .veille-item{
-      background:linear-gradient(135deg,rgba(30,42,36,.8),rgba(20,30,25,.8));
-      border:1px solid rgba(1,255,192,.2);
-      border-radius:20px;
-      padding:2rem;
-      box-shadow:0 10px 30px rgba(0,0,0,.6);
-      display:flex;
-      flex-direction:column;
-      transition:all .4s cubic-bezier(0.4, 0, 0.2, 1);
-      min-height:500px;
-      position:relative;
-      overflow:hidden;
-      cursor:pointer;
-    }
-    .veille-item::before{
-      content:'';
-      position:absolute;
-      top:0;
-      left:0;
-      width:100%;
-      height:100%;
-      background:linear-gradient(135deg,transparent,rgba(1,255,192,.05));
-      opacity:0;
-      transition:opacity .4s;
-    }
-    .veille-item:hover{
-      transform:translateY(-10px);
-      box-shadow:0 20px 50px rgba(1,255,192,.3);
-      border-color:#01ffc0;
-    }
-    .veille-item:hover::before{opacity:1}
+    /* Articles dans les cartes */
+    .feed-articles{margin-top:1.2rem;border-top:1px solid rgba(1,255,192,.1);padding-top:1rem;display:flex;flex-direction:column;gap:.6rem}
+    .art-item{display:block;text-decoration:none;padding:.5rem .6rem;border-radius:8px;border-left:2px solid transparent;transition:all .2s;position:relative}
+    .art-item:hover{background:rgba(1,255,192,.04);border-left-color:#01ffc0}
+    .art-title{font-size:.8rem;font-weight:600;color:#ccc;line-height:1.4;transition:color .2s}
+    .art-item:hover .art-title{color:#01ffc0}
+    .art-meta{font-family:'Fira Mono',monospace;font-size:.62rem;color:#555;margin-top:.2rem}
+    .feed-loading-mini{display:flex;align-items:center;gap:.6rem;padding:.5rem 0;color:#555;font-family:'Fira Mono',monospace;font-size:.65rem;text-transform:uppercase;letter-spacing:1px}
+    .mini-bar{width:40px;height:2px;background:rgba(1,255,192,.2);border-radius:2px;overflow:hidden;position:relative}
+    .mini-bar::after{content:'';position:absolute;inset:0;background:#01ffc0;animation:loading-slide 1.4s infinite}
+    @keyframes loading-slide{0%{transform:translateX(-100%)}100%{transform:translateX(200%)}}
 
-    .veille-icon{
-      font-size:3rem;
-      color:#01ffc0;
-      margin-bottom:1rem;
-      transition:all .3s ease;
-      position:relative;
-      z-index:1;
-    }
-    .veille-item:hover .veille-icon{
-      transform:scale(1.15) rotate(5deg);
-      text-shadow:0 0 20px rgba(1,255,192,.8);
-    }
+    /* Bouton voir plus */
+    .btn-open{display:inline-flex;align-items:center;gap:.5rem;margin-top:1.2rem;padding:.65rem 1.3rem;font-weight:700;text-transform:uppercase;font-size:.75rem;border-radius:8px;text-decoration:none;transition:all .3s;font-family:'Fira Mono',monospace;background:transparent;border:1.5px solid rgba(1,255,192,.3);color:#01ffc0;position:relative;overflow:hidden;align-self:flex-start}
+    .btn-open::before{content:'';position:absolute;inset:0;background:#01ffc0;transform:translateX(-100%);transition:transform .3s ease}
+    .btn-open:hover::before{transform:translateX(0)}
+    .btn-open:hover{color:#000;box-shadow:0 6px 20px rgba(1,255,192,.25)}
+    .btn-open span,.btn-open svg{position:relative;z-index:1}
+    .btn-open svg{transition:transform .3s}
+    .btn-open:hover svg{transform:translateX(4px)}
 
-    .veille-item h3{
-      font-size:1.5rem;
-      color:#01ffc0;
-      margin-bottom:1.2rem;
-      font-weight:900;
-      text-transform:uppercase;
-      letter-spacing:1px;
-      position:relative;
-      z-index:1;
-      transition:all .3s ease;
-    }
-    .veille-item:hover h3{
-      transform:scale(1.03);
-      text-shadow:0 0 15px rgba(1,255,192,.6);
-    }
-
-    .veille-text{
-      background:rgba(0,0,0,.6);
-      padding:1.3rem;
-      border-radius:12px;
-      margin-bottom:1.2rem;
-      flex-grow:1;
-      font-size:.95rem;
-      line-height:1.7;
-      color:#ccc;
-      border:1px solid rgba(1,255,192,.1);
-      position:relative;
-      z-index:1;
-      transition:all .3s ease;
-    }
-    .veille-item:hover .veille-text{
-      background:rgba(1,255,192,.05);
-      border-color:rgba(1,255,192,.2);
-      color:#e0e0e0;
-    }
-    .veille-text p{margin:0}
-    .veille-text strong{color:#01ffc0;font-weight:700}
-
-    .veille-item .btn{
-      margin-top:auto;
-      background:linear-gradient(135deg, #01ffc0, #00d9a3);
-      color:#000;
-      padding:.7rem 1.5rem;
-      text-decoration:none;
-      font-weight:700;
-      text-transform:uppercase;
-      font-size:.8rem;
-      border-radius:10px;
-      align-self:flex-start;
-      transition:all .3s cubic-bezier(0.4, 0, 0.2, 1);
-      font-family:'Fira Mono',monospace;
-      position:relative;
-      z-index:1;
-      overflow:hidden;
-      box-shadow:0 4px 12px rgba(1,255,192,.4);
-    }
-    .veille-item .btn::before{
-      content:'';
-      position:absolute;
-      top:0;
-      left:-100%;
-      width:100%;
-      height:100%;
-      background:linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-      transition:left 0.6s ease;
-    }
-    .veille-item .btn:hover::before{left:100%}
-    .veille-item .btn:hover{
-      background:linear-gradient(135deg, #00e6ac, #01ffc0);
-      transform:translateY(-3px) scale(1.05);
-      box-shadow:0 8px 20px rgba(1,255,192,.6);
-    }
-
-    /* Footer */
+    /* ── Footer ── */
     footer{background:#000;padding:3rem 2rem;display:flex;flex-wrap:wrap;justify-content:space-between;gap:2rem;font-size:.9rem;color:#aaa;border-top:2px solid rgba(1,255,192,.3)}
     footer div{flex:1;min-width:200px}
     footer strong{color:#01ffc0;display:block;margin-bottom:.5rem;font-size:1rem}
     footer a{color:#01ffc0;text-decoration:none;transition:color .3s}
     footer a:hover{color:#00d9a3;text-decoration:underline}
 
-    /* Responsive */
+    /* ── Responsive ── */
+    @media(max-width:900px){.veille-grid{grid-template-columns:1fr}}
     @media(max-width:768px){
-      .hero{padding:7rem 2rem 3rem;min-height:50vh}
-      .hero::before{width:300px;height:300px}
-      .hero h1{font-size:3rem;letter-spacing:-2px}
-      .hero-subtitle{font-size:1.05rem}
-      .theme-badge{font-size:.95rem;padding:.8rem 1.5rem}
-      .veille-grid{grid-template-columns:1fr;gap:2rem;padding:0 1.2rem}
-      .veille-item{min-height:auto}
-      .section{padding:3rem 1.5rem 4rem}
+      .hero h1{font-size:2.8rem;letter-spacing:-2px}
       .nav ul{display:none;flex-direction:column;position:absolute;top:60px;left:0;width:100%;background:rgba(0,0,0,.98);padding:2rem;border-bottom:1px solid rgba(1,255,192,.3);gap:1rem}
       .nav ul.active{display:flex}
       .hamburger{display:block}
@@ -198,196 +90,161 @@
 </head>
 <body>
 
-  <!-- NAVIGATION -->
-  <nav class="nav">
-    <div class="hamburger">☰</div>
-    <ul>
-        <li><a href="index.html">Accueil</a></li>
-      <li><a href="Pro.html">Profil</a></li>
-      <li><a href="Projet.html">Projets</a></li>
-      <li><a href="Veille Tech.html">V.Tech</a></li>
-      <li><a href="glpi.html">GLPI</a></li>
-      <li><a href="Contact.html">Contact</a></li>
-    </ul>
-  </nav>
+<!-- NAV -->
+<nav class="nav">
+  <div class="hamburger">☰</div>
+  <ul>
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="Pro.html">Profil</a></li>
+    <li><a href="Projet.html">Projets</a></li>
+    <li><a href="Veille Tech.html" class="active">V.Tech</a></li>
+    <li><a href="glpi.html">GLPI</a></li>
+    <li><a href="Contact.html">Contact</a></li>
+  </ul>
+</nav>
 
-  <!-- HERO -->
-  <header class="hero">
-    <div class="hero-content">
-      <div class="badge">Recherche & Innovation • BTS SIO</div>
-      <h1>Veille Technologique</h1>
-      <p class="hero-subtitle">Exploration des technologies émergentes et des tendances qui façonnent l'avenir du développement logiciel</p>
-      <div class="theme-badge">
-        💻 Écosystème du Développement Logiciel • Outils • Tendances • Migration
+<!-- HERO -->
+<header class="hero">
+  <div>
+    <div class="badge">BTS SIO · Option SLAM · 2024–2025</div>
+    <h1>Veille Tech</h1>
+    <p class="hero-sub">Actualités récupérées en temps réel depuis mes 3 sources de veille technologique.</p>
+    <div class="live-badge">
+      <span class="dot-live"></span>
+      <span id="lastUpdateText">Chargement…</span>
+    </div>
+  </div>
+</header>
+
+<!-- SOURCES -->
+<section class="section">
+  <h2>Mes Sources</h2>
+  <div class="veille-grid">
+
+    <!-- Reddit -->
+    <div class="veille-card">
+      <div class="veille-icon">🟠</div>
+      <div class="veille-source">Communauté</div>
+      <div class="veille-card-title">Reddit</div>
+      <div class="veille-card-desc">Discussions et actualités des IA — annonces et débats de la communauté tech.</div>
+      <span class="veille-tag">IA Générative</span>
+      <div class="feed-articles" id="feed-reddit">
+       
       </div>
+      <a class="btn-open" href="https://www.reddit.com/r/LocalLLaMA/" target="_blank" rel="noopener">
+        <span>Voir sur Reddit</span>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
     </div>
-  </header>
 
-  <main>
-    <section class="section">
-      <div class="veille-grid">
+    <!-- TLDR -->
+    <div class="veille-card">
+      <div class="veille-icon">✉</div>
+      <div class="veille-source">Newsletter</div>
+      <div class="veille-card-title">TLDR Tech</div>
+      <div class="veille-card-desc"> résumés des actualités dev & IA pour etre a la pages de nouveau outils</div>
+      <span class="veille-tag">Dev + IA</span>
+      <div class="feed-articles" id="feed-tldr">
         
-        <!-- Outils & Technologies -->
-        <div class="veille-item">
-          <div class="veille-icon">🛠️</div>
-          <h3>Outils & Technologies</h3>
-          <div class="veille-text">
-            <p><strong>Évolution des langages :</strong> PHP 8.x (performances, types stricts, JIT compiler), Python 3.12, JavaScript/TypeScript, Rust pour la performance.</p>
-            <p><br><strong>IDE modernes :</strong> VS Code, JetBrains (PhpStorm, WebStorm), GitHub Copilot (IA pour le code).</p>
-            <p><br><strong>Outils de collaboration :</strong> Git/GitHub, Jira, Slack, Notion, Linear pour la gestion de projet agile.</p>
-            <p><br><strong>Frameworks populaires :</strong> Laravel, Symfony (PHP), React, Vue.js (Frontend), Node.js, Express (Backend).</p>
-          </div>
-          <a href="https://www.php.net/releases/8.3/en.php" target="_blank" class="btn">En savoir plus →</a>
-        </div>
-
-        <!-- Tendances du marché IT -->
-        <div class="veille-item">
-          <div class="veille-icon">📈</div>
-          <h3>Tendances du Marché IT</h3>
-          <div class="veille-text">
-            <p><strong>IA Générative :</strong> Intégration de ChatGPT, GitHub Copilot, outils d'assistance au développement. Impact sur la productivité des développeurs.</p>
-            <p><br><strong>Cloud-native :</strong> Développement orienté cloud (AWS, Azure, GCP), microservices, conteneurisation (Docker, Kubernetes).</p>
-            <p><br><strong>Low-code/No-code :</strong> Montée de plateformes comme Webflow, Bubble, permettant de créer des applications sans coder.</p>
-            <p><br><strong>Métiers recherchés :</strong> Full-stack, DevOps, Data Engineer, spécialistes cybersécurité.</p>
-          </div>
-          <a href="https://www.gartner.com/en/newsroom/press-releases" target="_blank" class="btn">En savoir plus →</a>
-        </div>
-
-        <!-- Migration & Compatibilité -->
-        <div class="veille-item">
-          <div class="veille-icon">🔄</div>
-          <h3>Migration & Compatibilité</h3>
-          <div class="veille-text">
-            <p><strong>Migration de versions :</strong> PHP 7.4 → 8.x (typage strict, attributs, enums). Adaptation du code legacy, tests de régression.</p>
-            <p><br><strong>Modernisation d'applications :</strong> Passage de monolithes vers microservices, migration vers le cloud, refactoring technique.</p>
-            <p><br><strong>Gestion des dépendances :</strong> Composer (PHP), npm/yarn (JS), gestion des conflits de versions, sécurité des packages.</p>
-            <p><br><strong>Compatibilité cross-platform :</strong> Responsive design, PWA, applications multiplateformes (React Native, Flutter).</p>
-          </div>
-          <a href="https://www.php.net/manual/fr/migration83.php" target="_blank" class="btn">En savoir plus →</a>
-        </div>
-
       </div>
-    </section>
-  </main>
-
-  <!-- FOOTER -->
-  <footer>
-    <div>
-      <strong>Téléphone</strong>
-      +230 58 18 75 61
+      <a class="btn-open" href="https://tldr.tech/" target="_blank" rel="noopener">
+        <span>Voir TLDR</span>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
     </div>
-    <div>
-      <strong>Email</strong>
-      bryanrambelo@gmail.com
-    </div>
-    <div>
-      <strong>Suivez-moi</strong>
-      <a href="https://linkedin.com/in/bryanrambelo" target="_blank">LinkedIn</a>
-    </div>
-    <div>
-      <strong>Copyright</strong>
-      © 2025 Bryan Rambelo
-    </div>
-  </footer>
 
-  <script>
-    // Smooth scroll avec Lenis
-    const lenis = new Lenis({
-      duration: 1.4,
-      easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smooth: true
-    });
-    
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
-
-    // Animations GSAP
-    gsap.registerPlugin(ScrollTrigger);
-    
-    // Hero animation
-    gsap.from('.hero-content', {
-      opacity: 0,
-      y: 60,
-      duration: 1,
-      ease: 'power3.out'
-    });
-
-    // Cards animation
-    gsap.utils.toArray('.veille-item').forEach((item, i) => {
-      gsap.from(item, {
-        opacity: 0,
-        y: 60,
-        duration: 0.8,
-        delay: i * 0.15,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: '.veille-grid',
-          start: 'top 70%'
-        }
-      });
-    });
-
-    // Menu mobile
-    document.querySelector('.hamburger').addEventListener('click', () => {
-      document.querySelector('.nav ul').classList.toggle('active');
-    });
-
-    // Double-clic → ouvre le lien
-    document.querySelectorAll('.veille-item').forEach(item => {
-      item.addEventListener('dblclick', () => {
-        const link = item.querySelector('a');
-        if (link && link.href) {
-          window.open(link.href, '_blank');
-        }
-      });
-    });
-
-    // Parallax léger sur hover
-    document.querySelectorAll('.veille-item').forEach(card => {
-      card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
+    <!-- Google Alerts -->
+    <div class="veille-card">
+      <div class="veille-icon">🔔</div>
+      <div class="veille-source">Alertes</div>
+      <div class="veille-card-title">Google Alerts</div>
+      <div class="veille-card-desc">Alertes configurées sur les nouveaux frameworks, langages et techniques de développement web </div>
+      <span class="veille-tag">Frameworks & Dev</span>
+      <div class="feed-articles" id="feed-google">
         
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        
-        const rotateX = (y - centerY) / 30;
-        const rotateY = (centerX - x) / 30;
-        
-        gsap.to(card, {
-          rotationX: rotateX,
-          rotationY: rotateY,
-          duration: 0.3,
-          ease: 'power2.out',
-          transformPerspective: 1000
-        });
-      });
-      
-      card.addEventListener('mouseleave', () => {
-        gsap.to(card, {
-          rotationX: 0,
-          rotationY: 0,
-          duration: 0.5,
-          ease: 'power2.out'
-        });
-      });
-    });
+      </div>
+      <a class="btn-open" href="https://www.google.com/alerts#2:10" target="_blank" rel="noopener">
+        <span>Voir Google Alerts</span>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
 
-    // Animation des boutons au clic
-    document.querySelectorAll('.veille-item .btn').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        gsap.to(btn, {
-          scale: 0.92,
-          duration: 0.1,
-          yoyo: true,
-          repeat: 1
-        });
-      });
-    });
-  </script>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div><strong>Téléphone</strong>+230 58 18 75 61</div>
+  <div><strong>Email</strong>bryanrambelo@gmail.com</div>
+  <div><strong>Suivez-moi</strong><a href="https://linkedin.com/in/bryanrambelo" target="_blank">LinkedIn</a></div>
+  <div><strong>Copyright</strong>© 2025 Bryan Rambelo</div>
+</footer>
+
+<script>
+/* ── Lenis ── */
+const lenis = new Lenis({ duration:1.4, easing: t => Math.min(1, 1.001 - Math.pow(2,-10*t)) });
+(function raf(t){ lenis.raf(t); requestAnimationFrame(raf); })(0);
+
+/* ── GSAP ── */
+gsap.registerPlugin(ScrollTrigger);
+gsap.from('.badge',    { opacity:0, y:20, duration:.7, delay:.2 });
+gsap.from('.hero h1',  { opacity:0, y:50, duration:1,  delay:.4, ease:'power3.out' });
+gsap.from('.hero-sub', { opacity:0, y:30, duration:.7, delay:.7 });
+gsap.from('.live-badge',{ opacity:0, y:20, duration:.6, delay:.9 });
+gsap.utils.toArray('.veille-card').forEach((card, i) => {
+  gsap.from(card, { opacity:0, y:50, duration:.7, delay:i*.15, ease:'power2.out',
+    scrollTrigger:{ trigger:'.veille-grid', start:'top 78%' } });
+});
+
+/* ── RSS via rss2json ── */
+const RSS = 'https://api.rss2json.com/v1/api.json?count=4&rss_url=';
+const FEEDS = [
+  { id:'reddit', url:'https://www.reddit.com/r/MachineLearning/.rss' },
+  { id:'tldr',   url:'https://news.google.com/rss/search?q=react+javascript+framework+nextjs+vite+developpement+web&hl=fr&gl=FR&ceid=FR:fr' },
+  { id:'google', url:'https://news.google.com/rss/search?q=nouveau+framework+langage+programmation+technologie+dev+2025&hl=fr&gl=FR&ceid=FR:fr' }
+];
+
+function timeAgo(d) {
+  const diff = Date.now() - new Date(d).getTime();
+  const m = Math.floor(diff/60000);
+  if(m < 2)  return 'à l\'instant';
+  if(m < 60) return `il y a ${m} min`;
+  const h = Math.floor(m/60);
+  if(h < 24) return `il y a ${h}h`;
+  return `il y a ${Math.floor(h/24)}j`;
+}
+
+function clean(t) { return t.replace(/\s[-–|]\s[^-–|]+$/, '').trim().substring(0, 80) + (t.length > 80 ? '…' : ''); }
+
+async function loadFeed(id, url) {
+  const el = document.getElementById('feed-' + id);
+  try {
+    const res  = await fetch(RSS + encodeURIComponent(url));
+    const data = await res.json();
+    if(data.status === 'ok' && data.items?.length) {
+      el.innerHTML = data.items.slice(0,4).map(item => `
+        <a class="art-item" href="${item.link||'#'}" target="_blank" rel="noopener">
+          <div class="art-title">${clean(item.title||'Article')}</div>
+          <div class="art-meta">${item.pubDate ? timeAgo(item.pubDate) : ''}</div>
+        </a>`).join('');
+    } else throw new Error();
+  } catch {
+    el.innerHTML = `<div class="art-meta" style="color:#555;font-family:'Fira Mono',monospace;font-size:.65rem">Flux indisponible</div>`;
+  }
+}
+
+function updateTimestamp() {
+  const now = new Date();
+  document.getElementById('lastUpdateText').textContent =
+    'Mis à jour à ' + now.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});
+}
+
+updateTimestamp();
+FEEDS.forEach(f => loadFeed(f.id, f.url));
+
+/* ── Mobile nav ── */
+document.querySelector('.hamburger').addEventListener('click', () =>
+  document.querySelector('.nav ul').classList.toggle('active'));
+</script>
 </body>
 </html>

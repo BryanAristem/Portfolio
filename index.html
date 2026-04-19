@@ -11,8 +11,6 @@
   <style>
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
     body{font-family:'Inter',sans-serif;background:#0a0f0d;color:#e0e0e0;overflow-x:hidden;line-height:1.7}
-
-    /* ── Navigation ── */
     .nav{background:rgba(0,0,0,.95);backdrop-filter:blur(10px);padding:1.2rem 2rem;position:fixed;top:0;width:100%;z-index:1000;display:flex;justify-content:center;border-bottom:1px solid rgba(1,255,192,.2);box-shadow:0 4px 20px rgba(0,0,0,.3)}
     .nav ul{list-style:none;display:flex;gap:2rem;align-items:center}
     .nav a{color:#e0e0e0;text-decoration:none;font-family:'Fira Mono',monospace;font-weight:700;text-transform:uppercase;font-size:.85rem;transition:all .3s;position:relative;padding:.5rem 0}
@@ -20,8 +18,6 @@
     .nav a:hover{color:#01ffc0}
     .nav a:hover::after{width:100%}
     .hamburger{display:none;cursor:pointer;font-size:1.6rem;color:#e0e0e0}
-
-    /* ── Hero ── */
     .hero{min-height:100vh;display:flex;align-items:center;justify-content:space-between;padding:6rem 3rem 3rem;max-width:1300px;margin:0 auto;gap:4rem;position:relative}
     .hero::before{content:'';position:absolute;top:20%;right:10%;width:400px;height:400px;background:radial-gradient(circle,rgba(1,255,192,.1),transparent);border-radius:50%;z-index:0;pointer-events:none}
     .hero-content{z-index:1;max-width:600px}
@@ -37,14 +33,10 @@
     .hero-image{position:relative;z-index:1;animation:float 6s ease-in-out infinite}
     .hero img{width:380px;height:380px;object-fit:cover;border:6px solid #01ffc0;border-radius:20px;box-shadow:0 20px 60px rgba(1,255,192,.3);transition:transform .3s}
     .hero img:hover{transform:scale(1.02) rotate(-1deg)}
-
-    /* ── Sections ── */
     .section{padding:5rem 2rem;display:flex;flex-direction:column;align-items:center;position:relative}
     .section::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:80%;height:1px;background:linear-gradient(90deg,transparent,rgba(1,255,192,.3),transparent)}
     h2{font-size:3rem;font-weight:900;color:#01ffc0;margin-bottom:3rem;text-align:center;text-transform:uppercase;letter-spacing:2px;position:relative;display:inline-block}
     h2::after{content:'';position:absolute;bottom:-10px;left:50%;transform:translateX(-50%);width:60%;height:4px;background:#01ffc0;border-radius:2px}
-
-    /* ── Project Grid ── */
     .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2rem;max-width:860px;width:100%;margin:0 auto;padding:0 1rem}
     .card{background:linear-gradient(135deg,rgba(30,42,36,.8),rgba(20,30,25,.8));border:1px solid rgba(1,255,192,.2);border-radius:16px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.6);transition:all .4s;cursor:pointer;position:relative}
     .card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,transparent,rgba(1,255,192,.05));opacity:0;transition:opacity .3s;z-index:1}
@@ -56,8 +48,6 @@
     .card-thumb::after{content:'Voir le projet';position:absolute;inset:0;background:rgba(1,255,192,.15);backdrop-filter:blur(2px);display:flex;align-items:center;justify-content:center;font-family:'Fira Mono',monospace;font-weight:700;font-size:.85rem;color:#01ffc0;text-transform:uppercase;letter-spacing:2px;opacity:0;transition:opacity .3s}
     .card:hover .card-thumb::after{opacity:1}
     .card-name{padding:.9rem 1.2rem;font-size:1.1rem;font-weight:900;color:#01ffc0;text-transform:uppercase;letter-spacing:1px;position:relative;z-index:2}
-
-    /* ── Modal ── */
     .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);backdrop-filter:blur(6px);z-index:2000;align-items:center;justify-content:center;padding:2rem}
     .modal-overlay.open{display:flex}
     .modal{background:linear-gradient(135deg,#111a15,#0d1510);border:1px solid rgba(1,255,192,.35);border-radius:20px;width:100%;max-width:860px;display:grid;grid-template-columns:1fr 1fr;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.9),0 0 40px rgba(1,255,192,.1);animation:modalIn .35s cubic-bezier(.22,1,.36,1);position:relative}
@@ -72,8 +62,6 @@
     .modal-link.disabled{background:#2a3d33;color:#556;cursor:default;pointer-events:none}
     .modal-close{position:absolute;top:1.2rem;right:1.4rem;background:rgba(1,255,192,.1);border:1px solid rgba(1,255,192,.3);color:#01ffc0;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1.1rem;transition:all .3s;z-index:10;line-height:1}
     .modal-close:hover{background:#01ffc0;color:#000}
-
-    /* ── Skills ── */
     .skills{max-width:700px;width:100%;margin:2rem 0}
     .skill{margin-bottom:2rem;background:rgba(30,42,36,.5);padding:1.5rem;border-radius:12px;border:1px solid rgba(1,255,192,.2);transition:all .3s}
     .skill:hover{border-color:#01ffc0;background:rgba(30,42,36,.8)}
@@ -84,19 +72,34 @@
     .progress{height:100%;background:linear-gradient(90deg,#01ffc0,#00d9a3);border-radius:8px;width:0;transition:width 2s ease;position:relative}
     .progress::after{content:'';position:absolute;top:0;right:0;bottom:0;width:50%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.3));animation:shimmer 2s infinite}
     @keyframes shimmer{0%,100%{opacity:0}50%{opacity:1}}
-
-    /* ── About ── */
     .about-content{max-width:800px;text-align:center;line-height:2;color:#ccc;font-size:1.1rem;background:rgba(30,42,36,.5);padding:2.5rem;border-radius:16px;border:1px solid rgba(1,255,192,.2)}
     .about-content strong{color:#01ffc0}
-
-    /* ── Footer ── */
+    #veille{background:linear-gradient(180deg,transparent,rgba(1,255,192,.03),transparent)}
+    .veille-wrapper{max-width:960px;width:100%}
+    .veille-intro{text-align:center;color:#aaa;font-size:1rem;margin-bottom:2.5rem;max-width:560px;margin-left:auto;margin-right:auto;line-height:1.8}
+    .veille-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-bottom:2.5rem}
+    .veille-card{background:rgba(10,20,15,.7);border:1px solid rgba(1,255,192,.15);border-radius:14px;padding:1.6rem 1.4rem;position:relative;overflow:hidden;transition:all .35s}
+    .veille-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(1,255,192,.06),transparent);opacity:0;transition:opacity .35s}
+    .veille-card:hover{transform:translateY(-6px);border-color:rgba(1,255,192,.5);box-shadow:0 16px 40px rgba(1,255,192,.15)}
+    .veille-card:hover::before{opacity:1}
+    .veille-icon{width:44px;height:44px;border-radius:10px;background:rgba(1,255,192,.1);border:1px solid rgba(1,255,192,.25);display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:1.1rem}
+    .veille-source{font-family:'Fira Mono',monospace;font-size:.7rem;color:#01ffc0;text-transform:uppercase;letter-spacing:2px;margin-bottom:.4rem;opacity:.8}
+    .veille-card-title{font-size:1rem;font-weight:700;color:#fff;margin-bottom:.6rem}
+    .veille-card-desc{font-size:.85rem;color:#888;line-height:1.7}
+    .veille-tag{display:inline-block;margin-top:.9rem;font-family:'Fira Mono',monospace;font-size:.68rem;background:rgba(1,255,192,.08);border:1px solid rgba(1,255,192,.2);color:#01ffc0;padding:.25rem .65rem;border-radius:20px;text-transform:uppercase;letter-spacing:1px}
+    .veille-cta{display:flex;justify-content:center}
+    .btn-veille{padding:1rem 2.2rem;font-weight:700;text-transform:uppercase;font-size:.82rem;border-radius:8px;text-decoration:none;display:inline-flex;align-items:center;gap:.6rem;transition:all .35s;font-family:'Fira Mono',monospace;background:transparent;border:2px solid #01ffc0;color:#01ffc0;position:relative;overflow:hidden}
+    .btn-veille::before{content:'';position:absolute;inset:0;background:#01ffc0;transform:translateX(-100%);transition:transform .35s ease}
+    .btn-veille:hover::before{transform:translateX(0)}
+    .btn-veille:hover{color:#000;box-shadow:0 8px 30px rgba(1,255,192,.35)}
+    .btn-veille span{position:relative;z-index:1}
+    .btn-veille svg{position:relative;z-index:1;transition:transform .3s}
+    .btn-veille:hover svg{transform:translateX(4px)}
     footer{background:#000;padding:3rem 2rem;display:flex;flex-wrap:wrap;justify-content:space-between;gap:2rem;font-size:.9rem;color:#aaa;border-top:2px solid rgba(1,255,192,.3)}
     footer div{flex:1;min-width:200px}
     footer strong{color:#01ffc0;display:block;margin-bottom:.5rem;font-size:1rem}
     footer a{color:#01ffc0;text-decoration:none;transition:color .3s}
     footer a:hover{color:#00d9a3;text-decoration:underline}
-
-    /* ── Responsive ── */
     @media(max-width:768px){
       .hero{flex-direction:column;text-align:center;padding-top:7rem;gap:2rem}
       .hero h1{font-size:3.2rem;letter-spacing:-2px}
@@ -107,6 +110,7 @@
       .nav ul.active{display:flex}
       .hamburger{display:block}
       .grid{grid-template-columns:1fr;gap:1.5rem}
+      .veille-grid{grid-template-columns:1fr;gap:1.2rem}
       .section{padding:4rem 1.5rem}
       h2{font-size:2.2rem}
       .about-content{padding:2rem;font-size:1rem}
@@ -114,13 +118,11 @@
       .modal{grid-template-columns:1fr}
       .modal-img{min-height:220px;border-right:none;border-bottom:3px solid #01ffc0}
     }
-
     @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-20px)}}
   </style>
 </head>
 <body>
 
-  <!-- NAVIGATION -->
   <nav class="nav">
     <div class="hamburger">☰</div>
     <ul>
@@ -133,7 +135,6 @@
     </ul>
   </nav>
 
-  <!-- HERO -->
   <header id="accueil" class="hero">
     <div class="hero-content">
       <div class="badge">BTS SIO – MCCI Business School</div>
@@ -151,7 +152,6 @@
 
   <main>
 
-    <!-- PROJETS -->
     <section id="projets" class="section">
       <h2>Mes Projets</h2>
       <div class="grid">
@@ -172,8 +172,8 @@
           data-name="Voucher"
           data-desc="Application web de gestion d'achats en ligne avec tableau de bord administrateur sécurisé. Développée en PHP/MySQL avec système d'authentification."
           data-img="interface projet/Capture d'écran 2026-03-16 084703.png"
-          data-link=""
-          data-link-label="En développement">
+          data-link="Projet.html"
+          data-link-label="Voir le projet">
           <div class="card-thumb">
             <img src="interface projet/Capture d'écran 2026-03-16 084703.png" alt="Voucher" loading="lazy" onerror="this.src='https://via.placeholder.com/400x225/1e2a24/01ffc0?text=Voucher'">
           </div>
@@ -184,8 +184,8 @@
           data-name="Stage 1 : Facturation"
           data-desc="Solution web de génération de factures PDF pour entreprise locale. Gestion complète des clients, produits et historique des transactions."
           data-img="interface projet/facturation.png"
-          data-link=""
-          data-link-label="Bientôt disponible">
+          data-link="Projet.html"
+          data-link-label="Voir le projet">
           <div class="card-thumb">
             <img src="interface projet/facturation.png" alt="Facturation" loading="lazy" onerror="this.src='https://via.placeholder.com/400x225/1e2a24/01ffc0?text=Facturation'">
           </div>
@@ -196,8 +196,8 @@
           data-name="Stage 2 : Gomovya"
           data-desc="Refonte et développement de nouvelles fonctionnalités pour la plateforme Gomovya. Projet en cours de réalisation."
           data-img="interface projet/GoMovya.png"
-          data-link=""
-          data-link-label="En cours">
+          data-link="Projet.html"
+          data-link-label="Voir le projet">
           <div class="card-thumb">
             <img src="interface projet/GoMovya.png" alt="Gomovya" loading="lazy" onerror="this.src='https://via.placeholder.com/400x225/1e2a24/01ffc0?text=Gomovya'">
           </div>
@@ -207,55 +207,70 @@
       </div>
     </section>
 
-    <!-- COMPÉTENCES -->
-    <section id="skills" class="section">
-      <h2>Compétences Techniques</h2>
-      <div class="skills">
-
-        <div class="skill">
-          <div class="skill-header">
-            <span>HTML / CSS</span>
-            <span class="skill-percent">60%</span>
+    <section id="veille" class="section">
+      <h2>Veille Technologique</h2>
+      <div class="veille-wrapper">
+        <p class="veille-intro">Suivi actif des évolutions du développement web et de l'IA générative via 3 sources complémentaires.</p>
+        <div class="veille-grid">
+          <div class="veille-card">
+            <div class="veille-icon">𝕏</div>
+            <div class="veille-source">Réseau social</div>
+            <div class="veille-card-title">Twitter / X</div>
+            <div class="veille-card-desc">Suivi de comptes spécialisés IA générative — annonces, sorties de modèles, débats tech en temps réel.</div>
+            <span class="veille-tag">IA Générative</span>
           </div>
-          <div class="bar"><div class="progress" data-width="60"></div></div>
-        </div>
-
-        <div class="skill">
-          <div class="skill-header">
-            <span>BD MySQL / phpMyAdmin / PostgreSQL</span>
-            <span class="skill-percent">55%</span>
+          <div class="veille-card">
+            <div class="veille-icon">✉</div>
+            <div class="veille-source">Newsletter</div>
+            <div class="veille-card-title">TLDR Tech</div>
+            <div class="veille-card-desc">1 email/jour · 5 min de lecture · résumés des actualités dev & IA sans le bruit superflu.</div>
+            <span class="veille-tag">Dev + IA</span>
           </div>
-          <div class="bar"><div class="progress" data-width="55"></div></div>
-        </div>
-
-        <div class="skill">
-          <div class="skill-header">
-            <span>Java</span>
-            <span class="skill-percent">45%</span>
+          <div class="veille-card">
+            <div class="veille-icon">🔔</div>
+            <div class="veille-source">Alertes</div>
+            <div class="veille-card-title">Google Alerts</div>
+            <div class="veille-card-desc">Alertes configurées sur les nouveaux frameworks, langages et techniques de développement web 2025.</div>
+            <span class="veille-tag">Frameworks & Dev</span>
           </div>
-          <div class="bar"><div class="progress" data-width="45"></div></div>
         </div>
-
-        <div class="skill">
-          <div class="skill-header">
-            <span>React</span>
-            <span class="skill-percent">45%</span>
-          </div>
-          <div class="bar"><div class="progress" data-width="45"></div></div>
+        <div class="veille-cta">
+          <a href="Veille Tech.html" class="btn-veille">
+            <span>Voir le suivi complet</span>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
         </div>
-
-        <div class="skill">
-          <div class="skill-header">
-            <span>Python</span>
-            <span class="skill-percent">35%</span>
-          </div>
-          <div class="bar"><div class="progress" data-width="35"></div></div>
-        </div>
-
       </div>
     </section>
 
-    <!-- À PROPOS -->
+    <section id="skills" class="section">
+      <h2>Compétences Techniques</h2>
+      <div class="skills">
+        <div class="skill">
+          <div class="skill-header"><span>HTML / CSS</span><span class="skill-percent">60%</span></div>
+          <div class="bar"><div class="progress" data-width="60"></div></div>
+        </div>
+        <div class="skill">
+          <div class="skill-header"><span>BD MySQL / phpMyAdmin / PostgreSQL</span><span class="skill-percent">55%</span></div>
+          <div class="bar"><div class="progress" data-width="55"></div></div>
+        </div>
+        <div class="skill">
+          <div class="skill-header"><span>Java</span><span class="skill-percent">45%</span></div>
+          <div class="bar"><div class="progress" data-width="45"></div></div>
+        </div>
+        <div class="skill">
+          <div class="skill-header"><span>React</span><span class="skill-percent">45%</span></div>
+          <div class="bar"><div class="progress" data-width="45"></div></div>
+        </div>
+        <div class="skill">
+          <div class="skill-header"><span>Python</span><span class="skill-percent">35%</span></div>
+          <div class="bar"><div class="progress" data-width="35"></div></div>
+        </div>
+      </div>
+    </section>
+
     <section id="apropos" class="section">
       <h2>À Propos</h2>
       <div class="about-content">
@@ -267,7 +282,6 @@
 
   </main>
 
-  <!-- FOOTER -->
   <footer>
     <div><strong>Téléphone</strong>+230 58 18 75 61</div>
     <div><strong>Email</strong>bryanrambelo@gmail.com</div>
@@ -275,7 +289,6 @@
     <div><strong>Copyright</strong>© 2025 Bryan Rambelo</div>
   </footer>
 
-  <!-- MODAL -->
   <div class="modal-overlay" id="modalOverlay">
     <div class="modal" id="modal">
       <button class="modal-close" id="modalClose">✕</button>
@@ -290,53 +303,42 @@
   </div>
 
   <script>
-    /* ── Lenis ── */
     const lenis = new Lenis({ duration:1.4, easing: t => Math.min(1, 1.001 - Math.pow(2,-10*t)) });
     function raf(time){ lenis.raf(time); requestAnimationFrame(raf); }
     requestAnimationFrame(raf);
 
-    /* ── GSAP ── */
     gsap.registerPlugin(ScrollTrigger);
     gsap.from('.hero-content', { opacity:0, x:-60, duration:1.2, ease:'power3.out', delay:.3 });
     gsap.from('.hero-image',   { opacity:0, x: 60, duration:1.2, ease:'power3.out', delay:.5 });
-
     gsap.utils.toArray('.card').forEach((card, i) => {
       gsap.from(card, { opacity:0, y:60, duration:.8, delay:i*.15, ease:'power2.out',
         scrollTrigger:{ trigger:'.grid', start:'top 75%' } });
     });
-
     gsap.utils.toArray('h2').forEach(title => {
-      gsap.from(title, { opacity:0, y:40, duration:.8,
-        scrollTrigger:{ trigger:title, start:'top 80%' } });
+      gsap.from(title, { opacity:0, y:40, duration:.8, scrollTrigger:{ trigger:title, start:'top 80%' } });
     });
-
     gsap.utils.toArray('.skill').forEach((skill, i) => {
-      gsap.from(skill, { opacity:0, x:-50, duration:.6, delay:i*.1,
-        scrollTrigger:{ trigger:'.skills', start:'top 75%' } });
+      gsap.from(skill, { opacity:0, x:-50, duration:.6, delay:i*.1, scrollTrigger:{ trigger:'.skills', start:'top 75%' } });
     });
+    gsap.utils.toArray('.veille-card').forEach((card, i) => {
+      gsap.from(card, { opacity:0, y:50, duration:.7, delay:i*.15, ease:'power2.out',
+        scrollTrigger:{ trigger:'.veille-grid', start:'top 78%' } });
+    });
+    gsap.from('.veille-intro', { opacity:0, y:30, duration:.8, scrollTrigger:{ trigger:'.veille-intro', start:'top 85%' } });
+    gsap.from('.btn-veille', { opacity:0, y:20, duration:.6, scrollTrigger:{ trigger:'.veille-cta', start:'top 90%' } });
+    gsap.from('.about-content', { opacity:0, y:50, duration:1, scrollTrigger:{ trigger:'.about-content', start:'top 80%' } });
 
-    gsap.from('.about-content', { opacity:0, y:50, duration:1,
-      scrollTrigger:{ trigger:'.about-content', start:'top 80%' } });
-
-    /* ── Progress bars (IntersectionObserver — fiable) ── */
     let barsAnimated = false;
     function animateBars(){
       if(barsAnimated) return;
       barsAnimated = true;
-      document.querySelectorAll('.progress').forEach(p => {
-        p.style.width = p.dataset.width + '%';
-      });
+      document.querySelectorAll('.progress').forEach(p => { p.style.width = p.dataset.width + '%'; });
     }
     const skillsEl = document.querySelector('.skills');
     if(skillsEl){
-      new IntersectionObserver(entries => {
-        if(entries[0].isIntersecting) animateBars();
-      }, { threshold: 0.1 }).observe(skillsEl);
-    } else {
-      animateBars();
-    }
+      new IntersectionObserver(entries => { if(entries[0].isIntersecting) animateBars(); }, { threshold: 0.1 }).observe(skillsEl);
+    } else { animateBars(); }
 
-    /* ── Mobile menu ── */
     document.querySelector('.hamburger').addEventListener('click', () => {
       document.querySelector('.nav ul').classList.toggle('active');
     });
@@ -348,7 +350,6 @@
       });
     });
 
-    /* ── Modal ── */
     const overlay    = document.getElementById('modalOverlay');
     const modalImg   = document.getElementById('modalImg');
     const modalTitle = document.getElementById('modalTitle');
