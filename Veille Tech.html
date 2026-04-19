@@ -233,11 +233,6 @@ async function loadFeed(id, url) {
   }
 }
 
-function updateTimestamp() {
-  const now = new Date();
-  document.getElementById('lastUpdateText').textContent =
-    'Mis à jour à ' + now.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});
-}
 
 updateTimestamp();
 FEEDS.forEach(f => loadFeed(f.id, f.url));
